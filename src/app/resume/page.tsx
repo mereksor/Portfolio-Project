@@ -17,7 +17,7 @@ export default function ResumePage() {
           </h1>
         </div>
         <a
-          href="/documents/resume.pdf"
+          href="/documents/Resume 2-18.pdf"
           download
           className="bg-ink px-5 py-2.5 text-sm font-medium text-white transition-all duration-200 hover:bg-crimson"
         >
