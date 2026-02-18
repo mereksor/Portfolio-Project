@@ -1,65 +1,132 @@
-import Image from "next/image";
+import Link from "next/link";
+import { getFeaturedProjects, getAllBlogPosts } from "@/lib/content";
+import ProjectCard from "@/components/ProjectCard";
+import BlogPostCard from "@/components/BlogPostCard";
+import ScrollReveal from "@/components/ScrollReveal";
+import MagneticButton from "@/components/MagneticButton";
 
-export default function Home() {
+export default function HomePage() {
+  const featuredProjects = getFeaturedProjects();
+  const recentPosts = getAllBlogPosts().slice(0, 2);
+
   return (
-    <div className="flex min-h-screen items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex min-h-screen w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
-        />
-        <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
-          <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
-            To get started, edit the page.tsx file.
+    <div className="mx-auto max-w-6xl px-6 lg:px-10">
+      {/* Hero */}
+      <section className="pb-24 pt-24 sm:pt-32">
+        <div className="animate-fade-up">
+          <div className="flex items-center gap-3">
+            <span className="pulse-dot" />
+            <p className="section-label">Available for opportunities</p>
+          </div>
+          <h1 className="mt-6 font-display text-5xl font-bold leading-[1.1] tracking-tight text-ink sm:text-6xl lg:text-7xl">
+            Merek Soriano
           </h1>
-          <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Learning
-            </a>{" "}
-            center.
+        </div>
+        <div className="animate-fade-up stagger-2 mt-6 max-w-2xl">
+          <p className="text-xl leading-relaxed text-ink-muted">
+            Operations Research &amp; Information Engineering student at{" "}
+            <span className="font-medium text-ink">Cornell University</span>.
+            Building data-driven solutions at the intersection of{" "}
+            <span className="font-medium text-ink">optimization</span>,{" "}
+            <span className="font-medium text-ink">analytics</span>, and{" "}
+            <span className="font-medium text-ink">AI</span> &mdash; from
+            construction delay consulting to warehouse logistics to generative
+            AI partnerships.
           </p>
         </div>
-        <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
-          <a
-            className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-[158px]"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={16}
-            />
-            Deploy Now
-          </a>
-          <a
-            className="flex h-12 w-full items-center justify-center rounded-full border border-solid border-black/[.08] px-5 transition-colors hover:border-transparent hover:bg-black/[.04] dark:border-white/[.145] dark:hover:bg-[#1a1a1a] md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
+        <div className="animate-fade-up stagger-3 mt-4">
+          <div className="h-[2px] w-20 bg-crimson animate-width-reveal stagger-4" />
         </div>
-      </main>
+        <div className="animate-fade-up stagger-4 mt-10 flex items-center gap-5">
+          <MagneticButton href="/projects" className="cursor-pointer">
+            <span className="inline-flex items-center gap-2.5 bg-ink px-7 py-3.5 text-sm font-medium text-white transition-colors duration-200 hover:bg-crimson">
+              View Projects
+              <svg className="h-3.5 w-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={2}>
+                <path strokeLinecap="round" strokeLinejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" />
+              </svg>
+            </span>
+          </MagneticButton>
+          <Link
+            href="/resume"
+            className="link-underline text-sm font-medium text-ink-muted transition-colors hover:text-ink"
+          >
+            Resume
+          </Link>
+        </div>
+      </section>
+
+      <hr className="border-border" />
+
+      {/* Featured Projects */}
+      <section className="py-24">
+        <ScrollReveal>
+          <div className="flex items-baseline justify-between">
+            <div>
+              <p className="section-label">Selected Work</p>
+              <h2 className="section-title-hover mt-2 pl-5 font-display text-3xl font-bold text-ink">
+                Projects
+              </h2>
+            </div>
+            {featuredProjects.length > 0 && (
+              <Link
+                href="/projects"
+                className="link-underline text-sm font-medium text-ink-faint transition-colors hover:text-ink"
+              >
+                View all
+              </Link>
+            )}
+          </div>
+        </ScrollReveal>
+        {featuredProjects.length > 0 ? (
+          <div className="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+            {featuredProjects.map((project, i) => (
+              <ScrollReveal key={project.slug} delay={i + 1}>
+                <ProjectCard project={project} />
+              </ScrollReveal>
+            ))}
+          </div>
+        ) : (
+          <ScrollReveal delay={1}>
+            <div className="mt-10 rounded-lg border border-dashed border-border-strong bg-bg-elevated p-12 text-center">
+              <p className="font-mono text-sm text-ink-faint">Projects coming soon.</p>
+              <p className="mt-2 text-sm text-ink-muted">
+                Currently building out technical projects in optimization, AI/ML, and data analytics.
+              </p>
+            </div>
+          </ScrollReveal>
+        )}
+      </section>
+
+      <hr className="border-border" />
+
+      {/* Recent Blog Posts */}
+      {recentPosts.length > 0 && (
+        <section className="py-24">
+          <ScrollReveal>
+            <div className="flex items-baseline justify-between">
+              <div>
+                <p className="section-label">Writing</p>
+                <h2 className="section-title-hover mt-2 pl-5 font-display text-3xl font-bold text-ink">
+                  Recent Posts
+                </h2>
+              </div>
+              <Link
+                href="/blog"
+                className="link-underline text-sm font-medium text-ink-faint transition-colors hover:text-ink"
+              >
+                View all
+              </Link>
+            </div>
+          </ScrollReveal>
+          <div className="mt-10 grid gap-6 sm:grid-cols-2">
+            {recentPosts.map((post, i) => (
+              <ScrollReveal key={post.slug} delay={i + 1}>
+                <BlogPostCard post={post} />
+              </ScrollReveal>
+            ))}
+          </div>
+        </section>
+      )}
     </div>
   );
 }
