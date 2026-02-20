@@ -1,31 +1,85 @@
 ---
-title: "CE+P Renewable Energy Dashboard"
+title: "California Fuel Project Economics Simulator"
 slug: "cep-renewable-dashboard"
-description: "A fully interactive dashboard and news hub for the renewable energy sector, built in collaboration with California Energy and Power (CE+P)."
+description: "A decision-support platform modeling how carbon intensity and regulatory credit markets impact renewable fuel project finance under California and federal policy structures. Built in collaboration with CE+P."
 date: "2026-03-15"
-tags: ["Dashboard", "Data Visualization", "Energy", "React"]
+tags: ["Finance", "Data Visualization", "Energy", "React"]
 featured: true
 status: "upcoming"
 ---
 
 ## Overview
 
-Collaborating with California Energy and Power (CE+P) to design and build a comprehensive, interactive dashboard that visualizes renewable energy data alongside a curated industry news feed. The platform aims to give stakeholders a real-time view into the renewable sector's performance, trends, and developments.
+A regulatory-finance simulation engine built in collaboration with California Energy and Power (CE+P). The platform models how carbon intensity scores and credit market dynamics affect renewable fuel project economics under California's LCFS program and the federal Renewable Fuel Standard (RFS). All assumptions are fully parameterized — the system functions as a configurable sandbox, not a fixed model.
 
 ## Status
 
 📋 **Upcoming** — This project has not yet been started. Development is planned to begin in March 2026.
 
-## Goals
+## Assumptions Framework
 
-- Build an interactive, real-time dashboard with filterable metrics across renewable energy categories (solar, wind, hydro, etc.)
-- Integrate a curated news aggregation system for industry developments
-- Design for both executive-level overviews and drill-down analytical views
-- Ensure the platform is responsive and accessible across devices
+The model is structured around three tiers of assumptions to maintain credibility and avoid speculative claims:
+
+**Tier 1 — Structurally Safe (Regulatory Reality)**
+Public policy mechanics modeled as structural truths:
+- LCFS credits awarded based on carbon intensity differential
+- LCFS credits priced per metric ton of CO₂e avoided
+- RINs tied to renewable fuel production under the federal RFS
+- Ethanol project revenue streams: fuel sales, LCFS credits, RINs
+- Standard project finance metrics: EBITDA, IRR, DSCR, NPV
+
+**Tier 2 — Parameterized Inputs (Configurable)**
+All variables are user-editable inputs, not fixed assumptions:
+- CI score, CI reduction from carbon capture
+- Ethanol price, feedstock cost, LCFS price, RIN price
+- Plant capacity, capex, debt ratio, interest rate, operating costs
+
+**Tier 3 — Avoided**
+No proprietary claims, insider assumptions, or unverified company-specific data. All scenarios framed as hypothetical California ethanol projects.
+
+## Core System Architecture
+
+### 1. Modeling Engine (Backend)
+- LCFS and RIN credit revenue calculation
+- Annual revenue aggregation with opex/capex modeling
+- Debt amortization and capital structure modeling
+- IRR, NPV, and DSCR computation
+- Sensitivity analysis and optional Monte Carlo simulation
+
+### 2. Data Layer
+- Public LCFS and RIN historical price data (sourced and labeled)
+- Ethanol and corn futures reference pricing
+- Manual CSV upload as fallback for custom datasets
+- Clearly labeled as historical reference, not predictive
+
+### 3. Frontend
+
+**Section A — Executive Overview**
+Revenue breakdown, IRR, DSCR, carbon intensity, and credit revenue contribution. Clean and minimal.
+
+**Section B — Sensitivity Explorer**
+Interactive sliders for CI score, LCFS price, feedstock cost, ethanol price, and capex. Visual outputs include IRR sensitivity curves, tornado charts, and revenue stack bars.
+
+**Section C — Risk Simulator (Advanced)**
+Monte Carlo simulation with configurable volatility distributions, 1,000+ simulation runs, IRR distribution visualization, and probability analysis against hurdle rates.
+
+## Feature Roadmap
+
+**Minimum Viable (Strong Version)**
+- Fully parameterized financial model
+- LCFS + RIN revenue engine
+- Capital structure modeling
+- Sensitivity visualization
+- Clean executive dashboard
+
+**Advanced Version**
+- Monte Carlo simulation engine
+- Historical price overlays
+- Scenario regime comparison (low / mid / high credit price environments)
 
 ## Tech Stack
 
 - React / Next.js for the frontend application
-- Data visualization libraries (D3.js, Recharts, or similar)
-- Backend API for data ingestion and news aggregation
-- Deployment on Vercel or similar platform
+- D3.js / Recharts for interactive data visualization
+- Python backend for modeling engine and Monte Carlo simulations
+- Vercel deployment

@@ -74,6 +74,14 @@ export default async function ProjectPage({
             </span>
           </>
         )}
+        {project.status === "in-progress" && (
+          <>
+            <span className="text-ink-faint">·</span>
+            <span className="inline-block rounded bg-crimson/10 px-2.5 py-0.5 text-xs font-semibold uppercase tracking-wider text-crimson">
+              In Progress
+            </span>
+          </>
+        )}
         <span className="text-ink-faint">·</span>
         <div className="flex flex-wrap gap-1.5">
           {project.tags.map((tag) => (

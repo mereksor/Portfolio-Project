@@ -22,6 +22,11 @@ export default function ProjectCard({ project }: { project: Project }) {
             Upcoming
           </span>
         )}
+        {project.status === "in-progress" && (
+          <span className="inline-block rounded bg-crimson/10 px-2 py-0.5 text-[10px] font-semibold uppercase tracking-wider text-crimson">
+            In Progress
+          </span>
+        )}
       </div>
       <h3 className="mt-1.5 font-display text-lg font-bold leading-snug text-ink transition-colors group-hover:text-crimson">{project.title}</h3>
       <p className="mt-2 line-clamp-2 text-sm leading-relaxed text-ink-muted">{project.description}</p>
