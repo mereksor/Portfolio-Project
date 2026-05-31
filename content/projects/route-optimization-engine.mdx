@@ -1,0 +1,60 @@
+---
+title: "Route Optimization Engine"
+slug: "route-optimization-engine"
+description: "A dynamic scheduling and routing system for a field services company — turns daily jobs, technician availability, and material orders into optimized daily schedules and driving routes."
+date: "2026-05-15"
+tags: ["Optimization", "Python", "OR-Tools", "Field Services"]
+featured: true
+status: "in-progress"
+---
+
+## Overview
+
+A Dynamic Route Optimization Engine for a field services company. The system ingests daily job data, technician availability, and material orders, then automatically generates optimized daily schedules and driving routes for every field technician — and adapts in real time when jobs run long, get cancelled, or technicians call out.
+
+> *Client name withheld for confidentiality. Built solo as Project Lead and Developer.*
+
+## Status
+
+🔧 **In Progress** — May 2026 → target completion end of August 2026. Currently in discovery and data verification.
+
+## The Problem
+
+Every morning a dispatcher manually assigns jobs to technicians, guesses at travel time, and hopes the day goes smoothly. When a job runs long, someone cancels, or a technician calls out sick, the whole day falls apart. The cost of this chaos shows up in fuel, missed jobs, and unhappy customers.
+
+## Approach
+
+A three-layer system, each layer with a clear input and output so it can be updated independently:
+
+- **Layer 1 — Data Ingestion**: CSV / Excel upload (later: direct API connection to existing work order software). Inputs are validated before processing; missing or invalid data is flagged immediately.
+- **Layer 2 — Optimization Engine**: Solves three problems simultaneously — job-to-technician assignment, route sequencing, and customer time-window compliance. Runs in under 60 seconds for a typical day of 50–200 jobs.
+- **Layer 3 — Output & Interface**: Dispatcher dashboard with map and override controls, mobile-friendly technician view with arrival times and job notes, management dashboard with summary metrics, and automated alerts when downstream jobs are at risk.
+
+## Core Innovation — Material-to-Time Estimation Model
+
+Rather than rely on dispatcher guesses for job duration, the system builds a predictive model using **materials ordered** as the primary input. Each kit or parts combination maps to a baseline time estimate; over time, as actual completion times come in, the model self-corrects — learning that a specific kit takes 2.5 hours on average, or that jobs in rainy weather run 20% longer. After 60–90 days of live operation, the model produces statistically reliable predictions automatically.
+
+## Phased Delivery
+
+Each phase delivers a working, usable product — the company doesn't have to wait until phase 5 to see value.
+
+1. **Core routing engine** — addresses in, optimized driving routes per technician out
+2. **Material-to-time estimation model** — realistic time buffers per job
+3. **Skill matching & availability constraints** — only qualified, available technicians are assigned
+4. **Real-time rerouting** — when a job is cancelled or runs long, affected technicians' remaining routes recalculate
+5. **Dashboards, mobile view, reporting & API integrations** — production polish
+
+## Target Impact
+
+| Metric | Target |
+| --- | --- |
+| Jobs completed per technician per day | **+15–25%** |
+| Total daily drive time per technician | **−20–30%** |
+| Dispatcher planning time | **45–60 min → under 5 min** |
+| Customer on-time arrival rate | **+20%** |
+| Fuel cost per technician per day | **−15–20%** |
+| Job-duration estimate accuracy | within 15% after 90 days |
+
+## Tech Stack
+
+Python · Google OR-Tools · Google Maps API · Pandas · Streamlit · PostgreSQL · AWS / GCP
