@@ -4,7 +4,7 @@ import Link from "next/link";
 export const metadata: Metadata = {
   title: "Resume",
   description:
-    "Resume of Merek Soriano — Cornell ORIE student. Education, experience, skills, and leadership.",
+    "Resume of Merek Soriano, Cornell ORIE student. Education, experience, skills, and leadership.",
 };
 
 export default function ResumePage() {
@@ -61,7 +61,7 @@ export default function ResumePage() {
               Ithaca, NY &middot; Expected Dec 2027 (if accepted)
             </p>
             <p className="mt-1 text-sm text-ink-secondary">
-              M.Eng. Operations Research &amp; Information Engineering — Strategic Operations
+              M.Eng. Operations Research &amp; Information Engineering, Strategic Operations
             </p>
           </div>
         </div>
@@ -71,7 +71,7 @@ export default function ResumePage() {
       <section className="animate-fade-up stagger-2 mt-14">
         <p className="section-label">Work Experience</p>
         <div className="mt-4 space-y-8 border-l-2 border-crimson pl-6">
-          {/* AEP — Upcoming */}
+          {/* AEP: Upcoming */}
           <div>
             <div className="flex flex-wrap items-baseline justify-between gap-2">
               <h3 className="font-display font-semibold text-ink">
@@ -307,7 +307,7 @@ export default function ResumePage() {
         </div>
       </section>
 
-      {/* Selected Work CTA — links to the dedicated Projects section */}
+      {/* Selected Work CTA: links to the dedicated Projects section */}
       <section className="animate-fade-up stagger-5 mt-14">
         <p className="section-label">Selected Work</p>
         <div className="mt-4 border-l-2 border-crimson pl-6">
@@ -317,7 +317,7 @@ export default function ResumePage() {
         </div>
       </section>
 
-      {/* Contact — professional info only per NFR-12 */}
+      {/* Contact: professional info only per NFR-12 */}
       <section className="animate-fade-up stagger-6 mt-14">
         <p className="section-label">Contact</p>
         <div className="mt-4 flex flex-wrap gap-6 text-sm border-l-2 border-crimson pl-6">
