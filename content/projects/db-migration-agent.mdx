@@ -10,30 +10,46 @@ status: "completed"
 
 ## Overview
 
-An intelligent multi-agent platform built for Cornell's NBA 4920 (AI for Business Decisions) that automates the migration of data from legacy CRM and enterprise software. A primary orchestration agent coordinates specialized sub-agents that handle schema mapping, data transformation, validation, and error resolution.
+Agentic CRM migration platform built for Cornell's NBA 4920 (AI for Business Decisions). Users sign in with Google, connect a Salesforce or HubSpot org, describe what they want to migrate in plain English via chat, preview the plan, and run the migration into a PostgreSQL target. Built in partnership with Theo Berk.
 
 ## Status
 
-✅ **Completed** — Final platform delivered as part of NBA 4920.
+**Completed** — Delivered as the NBA 4920 capstone (Spring 2026). Demoed end-to-end against real Salesforce and HubSpot orgs in addition to mock CRMs.
 
-## Goals
+## Two Pipelines
 
-- Design a multi-agent system with a primary orchestrator and specialized sub-agents for distinct migration tasks
-- Automate schema analysis and field mapping between source (legacy) and target database structures
-- Build intelligent error detection and resolution so the system problem-solves migration conflicts autonomously
-- Reduce the manual effort and technical debt associated with legacy system migrations
+The platform does two jobs against the same target database.
 
-## Architecture
+**(1) Land the data.** A typed LangGraph `StateGraph` walks **Discovery → Discovery+Bot → Extractor → Transformer → Loader**. Discovery surveys the live CRM schema (list / describe / count / sample). Discovery+Bot consumes the discovery output plus per-user and per-CRM history from a shared memory database to produce a typed `MigrationPlan` — with no user input required at that step. Extractor builds SOQL, queries, and paginates. Transformer and Loader carry the records into Postgres.
 
-- **Orchestrator Agent** — manages the migration pipeline, delegates tasks, and handles exceptions
-- **Schema Mapping Agent** — analyzes source and target schemas, identifies field mappings, flags incompatibilities
-- **Data Transformation Agent** — handles type conversions, data cleaning, and format normalization
-- **Validation Agent** — runs integrity checks, surfaces data-loss risks, and generates migration reports
+**(2) Answer questions against it.** A separate query pipeline takes plain-English questions and returns tables, CSV, xlsx, chat rows, or summaries — its own LangGraph over the target database.
+
+## Memory Database (`agent-db`)
+
+A dedicated PostgreSQL instance stores every node entry/exit and every tool call across both pipelines. An **Evaluation Agent** scores each run on success rate, retry count, latency, and token spend, and writes findings back into memory keyed per-user AND per-CRM-type. The platform gets smarter over time along both axes.
+
+## Agents
+
+- **Discovery Agent** — live CRM schema survey: list / describe / count / sample
+- **Discovery+Bot Agent** — Discovery output + agent-db history → typed `MigrationPlan`
+- **Extractor Agent** — `build_soql`, `query`, `query_more` (Salesforce SOQL today; HubSpot path in progress)
+- **Transformer Agent** — type conversions, cleaning, normalization
+- **Loader Agent** — into target Postgres
+- **Evaluation Agent** — observes every pipeline step, writes scoring back to `agent-db`
+- **NL-Query Pipeline** — separate LangGraph for plain-English queries over the target database
+
+## CRM Coverage
+
+- **Salesforce** — real org auth via Salesforce CLI (`sf auth web login`), token refresh script writes credentials into `.env`
+- **HubSpot** — Private App token auth
+- **Mock CRM** — local Postgres-backed mock for offline development and CI smoke
+
+The frontend's connect flow surfaces the right credential terminology per CRM (Salesforce shows "Access token", HubSpot shows "Private App token", mocks show "API key").
 
 ## Outcome
 
-The platform was delivered as the NBA 4920 capstone. The multi-agent orchestration automated previously manual schema-mapping and transformation work, demonstrating that LLM-coordinated sub-agents can meaningfully reduce migration overhead on real legacy datasets.
+Delivered as the NBA 4920 capstone. Multi-agent orchestration automated work that had been done by hand — proof that LLM-coordinated sub-agents can meaningfully reduce migration overhead on real legacy datasets. The agent-db memory loop is what makes the platform compound: every run sharpens both the per-user history and the per-CRM-type playbook for the next migration.
 
 ## Tech Stack
 
-Python · LLM APIs (orchestration & schema interpretation) · LangGraph (multi-agent coordination) · Database connectors · Validation framework
+Next.js 14 (frontend) · FastAPI (backend) · LangGraph (multi-agent orchestration) · OpenAI / Claude · PostgreSQL (target + agent-db + mock-CRM seed) · Docker Compose · Salesforce CLI · HubSpot Private App auth
