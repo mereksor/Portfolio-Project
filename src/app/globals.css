@@ -340,9 +340,35 @@ hr {
   --tw-prose-bullets: var(--crimson);
   --tw-prose-quotes: var(--ink-secondary);
   --tw-prose-quote-borders: var(--crimson);
-  --tw-prose-code: var(--code-text);
+  --tw-prose-code: var(--ink);
   --tw-prose-pre-code: var(--code-text);
   --tw-prose-pre-bg: var(--code-bg);
+}
+
+/* Inline code — readable on the light page background */
+/* (Tailwind's default prose code styling targets dark themes; we
+   want dark text on a tinted neutral chip instead.) */
+.prose-editorial :where(code):not(:where(pre code)) {
+  color: var(--ink);
+  background-color: var(--bg-muted);
+  padding: 1px 6px;
+  border-radius: 4px;
+  font-size: 0.875em;
+  font-weight: 500;
+  border: 1px solid var(--border);
+}
+/* Remove the prose plugin's leading/trailing backtick pseudo-elements */
+.prose-editorial :where(code):not(:where(pre code))::before,
+.prose-editorial :where(code):not(:where(pre code))::after {
+  content: none;
+}
+/* Code blocks inside <pre> keep the dark shiki theme — reset overrides */
+.prose-editorial pre code {
+  background: transparent;
+  border: 0;
+  padding: 0;
+  font-weight: normal;
+  color: var(--code-text);
 }
 
 /* Per-child staggered reveal for prose blocks — gives each section its own fade-up */
