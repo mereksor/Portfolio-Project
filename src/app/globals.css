@@ -344,3 +344,28 @@ hr {
   --tw-prose-pre-code: var(--code-text);
   --tw-prose-pre-bg: var(--code-bg);
 }
+
+/* Per-child staggered reveal for prose blocks — gives each section its own fade-up */
+.prose-editorial > * {
+  opacity: 0;
+  animation: fadeUp 0.7s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+.prose-editorial > *:nth-child(1)  { animation-delay: 0.15s; }
+.prose-editorial > *:nth-child(2)  { animation-delay: 0.22s; }
+.prose-editorial > *:nth-child(3)  { animation-delay: 0.29s; }
+.prose-editorial > *:nth-child(4)  { animation-delay: 0.36s; }
+.prose-editorial > *:nth-child(5)  { animation-delay: 0.43s; }
+.prose-editorial > *:nth-child(6)  { animation-delay: 0.50s; }
+.prose-editorial > *:nth-child(7)  { animation-delay: 0.57s; }
+.prose-editorial > *:nth-child(8)  { animation-delay: 0.64s; }
+.prose-editorial > *:nth-child(9)  { animation-delay: 0.71s; }
+.prose-editorial > *:nth-child(10) { animation-delay: 0.78s; }
+.prose-editorial > *:nth-child(n+11) { animation-delay: 0.85s; }
+
+/* Honor reduced-motion: skip the per-child staggered reveal */
+@media (prefers-reduced-motion: reduce) {
+  .prose-editorial > * {
+    opacity: 1;
+    animation: none;
+  }
+}

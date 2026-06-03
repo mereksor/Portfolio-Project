@@ -136,7 +136,7 @@ export default async function ProjectPage({
         </div>
       )}
 
-      <div className="animate-fade-up stagger-3 prose-editorial mt-12 max-w-none">
+      <div className="prose prose-editorial mt-12 max-w-none">
         {content}
       </div>
     </article>
