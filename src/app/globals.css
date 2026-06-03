@@ -345,11 +345,12 @@ hr {
   --tw-prose-pre-bg: var(--code-bg);
 }
 
-/* Inline code — readable on the light page background */
-/* (Tailwind's default prose code styling targets dark themes; we
-   want dark text on a tinted neutral chip instead.) */
-.prose-editorial :where(code):not(:where(pre code)) {
-  color: var(--ink);
+/* Inline code: readable on the light page background.
+   Uses simple selectors that survive Tailwind v4 + Turbopack
+   processing (the previous version with nested :where() inside
+   :not() was being stripped from the compiled bundle). */
+.prose-editorial code {
+  color: var(--ink) !important;
   background-color: var(--bg-muted);
   padding: 1px 6px;
   border-radius: 4px;
@@ -357,18 +358,20 @@ hr {
   font-weight: 500;
   border: 1px solid var(--border);
 }
-/* Remove the prose plugin's leading/trailing backtick pseudo-elements */
-.prose-editorial :where(code):not(:where(pre code))::before,
-.prose-editorial :where(code):not(:where(pre code))::after {
-  content: none;
+/* Remove the prose plugin's backtick pseudo-elements on inline code */
+.prose-editorial code::before,
+.prose-editorial code::after {
+  content: none !important;
 }
-/* Code blocks inside <pre> keep the dark shiki theme — reset overrides */
+/* Code blocks inside <pre> keep the dark shiki theme; reset the
+   inline-chip overrides above for nested code-in-pre. */
 .prose-editorial pre code {
+  color: var(--code-text) !important;
   background: transparent;
   border: 0;
   padding: 0;
   font-weight: normal;
-  color: var(--code-text);
+  font-size: inherit;
 }
 
 /* Per-child staggered reveal for prose blocks — gives each section its own fade-up */
