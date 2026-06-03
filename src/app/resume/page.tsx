@@ -41,7 +41,7 @@ export default function ResumePage() {
               B.S. Operations Research &amp; Information Engineering, Minor in Artificial Intelligence
             </p>
             <p className="mt-1 text-sm text-ink-secondary">
-              GPA: 3.3 / 4.0
+              GPA: 3.4 / 4.0
             </p>
             <p className="mt-1 text-sm text-ink-secondary">
               Most Recent Semester: 3.6 GPA (22 credits; advanced ORIE coursework including Optimization, Stochastic Models, and Machine Learning)
