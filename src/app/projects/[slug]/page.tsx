@@ -82,6 +82,22 @@ export default async function ProjectPage({
             </span>
           </>
         )}
+        {project.status === "completed" && (
+          <>
+            <span className="text-ink-faint">·</span>
+            <span className="inline-block rounded bg-ink px-2.5 py-0.5 text-xs font-semibold uppercase tracking-wider text-white">
+              Completed
+            </span>
+          </>
+        )}
+        {project.status === "in-design" && (
+          <>
+            <span className="text-ink-faint">·</span>
+            <span className="inline-block rounded bg-bg-muted px-2.5 py-0.5 text-xs font-semibold uppercase tracking-wider text-ink-secondary">
+              In Design
+            </span>
+          </>
+        )}
         <span className="text-ink-faint">·</span>
         <div className="flex flex-wrap gap-1.5">
           {project.tags.map((tag) => (
@@ -120,7 +136,7 @@ export default async function ProjectPage({
         </div>
       )}
 
-      <div className="animate-fade-up stagger-3 prose-editorial mt-12 max-w-none">
+      <div className="prose prose-editorial mt-12 max-w-none">
         {content}
       </div>
     </article>

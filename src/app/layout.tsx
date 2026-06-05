@@ -35,7 +35,7 @@ export const metadata: Metadata = {
     template: "%s | Merek Soriano",
   },
   description:
-    "Merek Soriano — Cornell ORIE student building at the intersection of optimization, analytics, and AI. Resume, projects, and blog.",
+    "Merek Soriano. Cornell ORIE student building at the intersection of optimization, analytics, and AI. Resume, projects, and blog.",
   openGraph: {
     title: "Merek Soriano | ORIE & AI",
     description:

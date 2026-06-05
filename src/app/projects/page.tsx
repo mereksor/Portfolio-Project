@@ -6,7 +6,7 @@ import type { Metadata } from "next";
 export const metadata: Metadata = {
   title: "Projects",
   description:
-    "Technical projects by Merek Soriano — optimization, machine learning, and data-driven solutions.",
+    "Technical projects by Merek Soriano covering optimization, machine learning, and data-driven solutions.",
 };
 
 export default function ProjectsPage() {

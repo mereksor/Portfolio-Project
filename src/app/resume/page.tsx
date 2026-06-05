@@ -1,9 +1,10 @@
 import type { Metadata } from "next";
+import Link from "next/link";
 
 export const metadata: Metadata = {
   title: "Resume",
   description:
-    "Resume of Merek Soriano — Cornell ORIE student. Education, experience, skills, and leadership.",
+    "Resume of Merek Soriano, Cornell ORIE student. Education, experience, skills, and leadership.",
 };
 
 export default function ResumePage() {
@@ -39,9 +40,14 @@ export default function ResumePage() {
             <p className="mt-1 text-sm text-ink-secondary">
               B.S. Operations Research &amp; Information Engineering, Minor in Artificial Intelligence
             </p>
+            <p className="mt-1 text-sm text-ink-secondary">
+              GPA: 3.4 / 4.0
+            </p>
+            <p className="mt-1 text-sm text-ink-secondary">
+              Most Recent Semester: 3.6 GPA (22 credits; advanced ORIE coursework including Optimization, Stochastic Models, and Machine Learning)
+            </p>
             <p className="mt-1 text-sm text-ink-faint">
-              Relevant Coursework: Practical Tools for OR (ML &amp; Data Science), Engineering Applications of OR,
-              Financial &amp; Managerial Accounting, Data Analytics for Information Science
+              Relevant Coursework: Optimization Methods, Machine Learning &amp; Data Science, Stochastic Models, Engineering Applications of OR, Financial &amp; Managerial Accounting
             </p>
           </div>
           <div>
@@ -55,7 +61,7 @@ export default function ResumePage() {
               Ithaca, NY &middot; Expected Dec 2027 (if accepted)
             </p>
             <p className="mt-1 text-sm text-ink-secondary">
-              M.Eng. Operations Research &amp; Information Engineering — Strategic Operations
+              M.Eng. Operations Research &amp; Information Engineering, Strategic Operations
             </p>
           </div>
         </div>
@@ -65,7 +71,7 @@ export default function ResumePage() {
       <section className="animate-fade-up stagger-2 mt-14">
         <p className="section-label">Work Experience</p>
         <div className="mt-4 space-y-8 border-l-2 border-crimson pl-6">
-          {/* AEP — Upcoming */}
+          {/* AEP: Upcoming */}
           <div>
             <div className="flex flex-wrap items-baseline justify-between gap-2">
               <h3 className="font-display font-semibold text-ink">
@@ -79,16 +85,6 @@ export default function ResumePage() {
             <p className="font-mono text-sm text-ink-muted">
               American Electric Power (AEP) &middot; Columbus, OH
             </p>
-            <ul className="mt-2 space-y-1.5 text-sm text-ink-muted">
-              <li className="flex gap-2">
-                <span className="mt-1.5 text-crimson">&bull;</span>
-                <span>Planning to focus on datacenter infrastructure and finance within AEP&apos;s business process improvement division</span>
-              </li>
-              <li className="flex gap-2">
-                <span className="mt-1.5 text-crimson">&bull;</span>
-                <span>Will apply operations research and data analytics to optimize enterprise workflows and operational efficiency</span>
-              </li>
-            </ul>
           </div>
 
           {/* Secretariat */}
@@ -105,15 +101,15 @@ export default function ResumePage() {
             <ul className="mt-2 space-y-1.5 text-sm text-ink-muted">
               <li className="flex gap-2">
                 <span className="mt-1.5 text-crimson">&bull;</span>
-                <span>Conducted quantitative analyses on scheduling and cost data across large construction projects to identify trends and improve reporting accuracy</span>
+                <span>Analyzed construction scheduling and cost data across large-scale projects to identify delays, cost drivers, and risk factors</span>
               </li>
               <li className="flex gap-2">
                 <span className="mt-1.5 text-crimson">&bull;</span>
-                <span>Developed Excel-based forecasting tools and visual dashboards to evaluate project performance and financial efficiency</span>
+                <span>Built forecasting models and dashboards to assess timeline risk and financial exposure</span>
               </li>
               <li className="flex gap-2">
                 <span className="mt-1.5 text-crimson">&bull;</span>
-                <span>Managed large datasets and complex project timelines to enhance analytical accuracy and support valuation-related insights and expert reports</span>
+                <span>Synthesized complex datasets into structured insights supporting valuation analysis and expert reporting</span>
               </li>
             </ul>
           </div>
@@ -132,15 +128,15 @@ export default function ResumePage() {
             <ul className="mt-2 space-y-1.5 text-sm text-ink-muted">
               <li className="flex gap-2">
                 <span className="mt-1.5 text-crimson">&bull;</span>
-                <span>Optimized service workflows for 10+ national relocation projects, improving user experience through process redesign and communication efficiency</span>
+                <span>Led operations across 10+ national relocation projects, improving execution through workflow redesign and process standardization</span>
               </li>
               <li className="flex gap-2">
                 <span className="mt-1.5 text-crimson">&bull;</span>
-                <span>Coordinated a warehouse management operation processing over 10,000 inventory items and serving 1,000+ customers through efficient shipping and fulfillment</span>
+                <span>Managed logistics system handling 10,000+ inventory items and fulfillment for 1,000+ customers</span>
               </li>
               <li className="flex gap-2">
                 <span className="mt-1.5 text-crimson">&bull;</span>
-                <span>Led an 80+ person team, applying user-centered process improvements that increased annual revenue by 10%</span>
+                <span>Directed an 80+ person team; implemented process improvements that contributed to a 10% increase in annual revenue</span>
               </li>
             </ul>
           </div>
@@ -159,11 +155,11 @@ export default function ResumePage() {
             <ul className="mt-2 space-y-1.5 text-sm text-ink-muted">
               <li className="flex gap-2">
                 <span className="mt-1.5 text-crimson">&bull;</span>
-                <span>Oversaw operations for 30+ properties and generated $8K+ in profit through pricing optimization</span>
+                <span>Built and operated a residential services business serving 30+ properties</span>
               </li>
               <li className="flex gap-2">
                 <span className="mt-1.5 text-crimson">&bull;</span>
-                <span>Implemented feedback and tracking systems to improve customer satisfaction</span>
+                <span>Developed pricing strategy that generated $8K+ in profit and improved service consistency</span>
               </li>
             </ul>
           </div>
@@ -187,19 +183,11 @@ export default function ResumePage() {
             <ul className="mt-2 space-y-1.5 text-sm text-ink-muted">
               <li className="flex gap-2">
                 <span className="mt-1.5 text-crimson">&bull;</span>
-                <span>Pitched, secured, and overseen all club projects, landing corporate clients including Cisco, Investcorp, and several early-stage startups</span>
+                <span>Secure and manage partnerships with firms including Cisco, Investcorp, and early-stage startups</span>
               </li>
               <li className="flex gap-2">
                 <span className="mt-1.5 text-crimson">&bull;</span>
-                <span>Run end-to-end club operations and administration including recruitment, project management, corporate outreach, and cross-functional coordination</span>
-              </li>
-              <li className="flex gap-2">
-                <span className="mt-1.5 text-crimson">&bull;</span>
-                <span>Built project frameworks for ideation, prototyping, and design evaluation using design thinking and collaborative planning</span>
-              </li>
-              <li className="flex gap-2">
-                <span className="mt-1.5 text-crimson">&bull;</span>
-                <span>Actively developing technical skills in AI/ML development and exploring industry applications alongside partnership responsibilities</span>
+                <span>Lead project execution and cross-functional coordination across AI initiatives</span>
               </li>
             </ul>
           </div>
@@ -217,15 +205,11 @@ export default function ResumePage() {
             <ul className="mt-2 space-y-1.5 text-sm text-ink-muted">
               <li className="flex gap-2">
                 <span className="mt-1.5 text-crimson">&bull;</span>
-                <span>Lead campus marketing ambassador for Celsius, engaging with 20+ on-campus organizations to build brand presence and drive product awareness</span>
+                <span>Manage product inventory and distribution logistics, coordinating supply and fulfillment across 20+ campus organizations</span>
               </li>
               <li className="flex gap-2">
                 <span className="mt-1.5 text-crimson">&bull;</span>
-                <span>Plan and execute promotional events, sampling campaigns, and partnerships with student groups to grow market share within the Cornell community</span>
-              </li>
-              <li className="flex gap-2">
-                <span className="mt-1.5 text-crimson">&bull;</span>
-                <span>Develop creative marketing strategies to connect with diverse student audiences across athletics, Greek life, and academic organizations</span>
+                <span>Lead campus marketing initiatives and sampling campaigns to drive engagement and brand presence</span>
               </li>
             </ul>
           </div>
@@ -233,16 +217,27 @@ export default function ResumePage() {
           <div>
             <div className="flex flex-wrap items-baseline justify-between gap-2">
               <h3 className="font-display font-semibold text-ink">
-                Vice President
+                Lodge Manager &amp; Vice President
               </h3>
-              <span className="font-mono text-xs text-ink-faint">Jan 2024 &ndash; Present</span>
+              <span className="font-mono text-xs text-ink-faint">Aug 2024 &ndash; May 2026</span>
             </div>
             <p className="font-mono text-sm text-ink-muted">
               Chi Psi Fraternity &middot; Ithaca, NY
             </p>
-            <p className="mt-1 text-xs text-ink-faint italic">
-              Former Property Manager
-            </p>
+            <ul className="mt-2 space-y-1.5 text-sm text-ink-muted">
+              <li className="flex gap-2">
+                <span className="mt-1.5 text-crimson">&bull;</span>
+                <span>Managed operations for a 13,000 sq ft residential lodge on 3.5 acres, overseeing facility maintenance, vendor contracts, and budgeting for 30 residents and 60+ members</span>
+              </li>
+              <li className="flex gap-2">
+                <span className="mt-1.5 text-crimson">&bull;</span>
+                <span>Planned and executed 4 large-scale formal events, managing logistics, vendor coordination, and budgets from concept through delivery</span>
+              </li>
+              <li className="flex gap-2">
+                <span className="mt-1.5 text-crimson">&bull;</span>
+                <span>Led chapter leadership as Vice President, overseeing organizational planning, member accountability, and cross-functional operations</span>
+              </li>
+            </ul>
           </div>
 
           <div>
@@ -274,24 +269,56 @@ export default function ResumePage() {
       {/* Skills */}
       <section className="animate-fade-up stagger-4 mt-14">
         <p className="section-label">Skills &amp; Interests</p>
-        <div className="mt-4 grid gap-5 sm:grid-cols-2 border-l-2 border-crimson pl-6">
+        <div className="mt-4 space-y-5 border-l-2 border-crimson pl-6">
           <div>
-            <h3 className="font-mono text-sm font-semibold text-ink">Technical Skills</h3>
+            <h3 className="font-mono text-sm font-semibold text-ink">
+              Languages &amp; Data <span className="text-ink-faint font-normal">(manual proficiency)</span>
+            </h3>
             <p className="mt-1 text-sm text-ink-muted">
-              Python, SQL, Excel (Modeling &amp; Forecasting), Tableau, Primavera P6, Data Visualization, Predictive Analytics, AI Tools, Workflow Optimization
+              Python &middot; SQL &middot; Excel (Advanced Modeling) &middot; Tableau &middot; Primavera P6 &middot; Git
+            </p>
+          </div>
+          <div>
+            <h3 className="font-mono text-sm font-semibold text-ink">AI Engineering</h3>
+            <p className="mt-1 text-sm text-ink-muted">
+              LLM APIs (Claude / OpenAI) &middot; LangGraph &middot; Multi-Agent Systems &middot; Prompt Engineering &middot; Agent Orchestration
+            </p>
+          </div>
+          <div>
+            <h3 className="font-mono text-sm font-semibold text-ink">
+              AI-Assisted Development <span className="text-ink-faint font-normal">(via Claude Code, Cursor)</span>
+            </h3>
+            <p className="mt-1 text-sm text-ink-muted">
+              TypeScript &middot; React / Next.js &middot; FastAPI &middot; PostgreSQL
+            </p>
+          </div>
+          <div>
+            <h3 className="font-mono text-sm font-semibold text-ink">Analytics &amp; Methods</h3>
+            <p className="mt-1 text-sm text-ink-muted">
+              Data Analysis &middot; Optimization &middot; Predictive Modeling &middot; Statistical Analysis &middot; Process Improvement &middot; Workflow Automation
             </p>
           </div>
           <div>
             <h3 className="font-mono text-sm font-semibold text-ink">Interests</h3>
             <p className="mt-1 text-sm text-ink-muted">
-              Financial Applications of AI, International Travel, Snowboarding, Basketball
+              AI in Finance &middot; Off-Grid Hiking &middot; Snowboarding &middot; Basketball
             </p>
           </div>
         </div>
       </section>
 
-      {/* Contact — professional info only per NFR-12 */}
+      {/* Selected Work CTA: links to the dedicated Projects section */}
       <section className="animate-fade-up stagger-5 mt-14">
+        <p className="section-label">Selected Work</p>
+        <div className="mt-4 border-l-2 border-crimson pl-6">
+          <Link href="/projects" className="link-underline text-sm font-medium text-crimson">
+            See full project case studies &rarr;
+          </Link>
+        </div>
+      </section>
+
+      {/* Contact: professional info only per NFR-12 */}
+      <section className="animate-fade-up stagger-6 mt-14">
         <p className="section-label">Contact</p>
         <div className="mt-4 flex flex-wrap gap-6 text-sm border-l-2 border-crimson pl-6">
           <a href="mailto:mks258@cornell.edu" className="link-underline text-crimson">
@@ -308,12 +335,6 @@ export default function ResumePage() {
           </span>
         </div>
       </section>
-
-      <p className="mt-14 text-xs text-ink-faint">
-        Note: This is a public-facing resume. Home address and phone number are
-        intentionally omitted for privacy. Contact me via email or LinkedIn for
-        full details.
-      </p>
     </div>
   );
 }

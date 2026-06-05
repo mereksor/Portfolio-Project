@@ -8,7 +8,7 @@ export interface Project {
   githubUrl?: string;
   liveUrl?: string;
   featured?: boolean;
-  status?: "upcoming" | "in-progress" | "completed";
+  status?: "upcoming" | "in-progress" | "completed" | "in-design";
 }
 
 export interface BlogPost {

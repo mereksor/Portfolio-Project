@@ -1,36 +1,88 @@
 ---
 title: "PWCC Mentor-Mentee Matching Algorithm"
 slug: "pwcc-mentor-matching"
-description: "Refining the assignment algorithm and building frontend UI for the President's Council of Cornell Women (PWCC) mentor-mentee matching system. ORIE 4999 project course."
+description: "Refined the mentor-mentee assignment algorithm and built the full-stack admin interface for the President's Council of Cornell Women's matching program. ORIE 4999 project course."
 date: "2026-01-15"
 tags: ["Algorithms", "Optimization", "ORIE", "React"]
 featured: true
-status: "in-progress"
+status: "completed"
+githubUrl: "https://github.com/mereksor/pwcc-matching-tool"
 ---
 
 ## Overview
 
-Working with the President's Council of Cornell Women (PWCC) through Cornell's ORIE 4999 project course to refine and improve their mentor-mentee assignment algorithms. The project involves both algorithmic optimization on the backend and building out a user-facing frontend for program administrators and participants.
+Refined the mentor-mentee assignment algorithm and built a full-stack admin web app for the President's Council of Cornell Women. Delivered through Cornell's ORIE 4999 project course. The work spanned backend optimization plus admin- and participant-facing UI, and the app is deployed and in active use.
 
 ## Status
 
-🔧 **In Progress** — Actively developing algorithm refinements and frontend UI.
+**Completed.** Algorithm refinements and frontend shipped to PWCC. The committee uses the app each cycle to upload Google Form responses, run matching, review results, and persist confirmed batches to a shared database.
 
-## Goals
+## How It Works
 
-- Analyze and improve the existing mentor-mentee matching algorithm to maximize compatibility and satisfaction
-- Develop frontend UI for administrators to manage, review, and override assignments
-- Build user-facing functionality for mentors and mentees to input preferences and view matches
-- Validate algorithm performance through testing and stakeholder feedback
+```
+Browser (Next.js)
+  POST /api/run-matching with CSV
+    >  auth check (Google OAuth, @cornell.edu, MASTER role)
+    >  rate limit (per-user daily cap)
+    >  spawnSync: python3 algorithm/run.py
+       1. cleaned_data.py
+       2. fields_similarity_scores_generator.py
+       3. compatibility_scores.py
+       4. greedy_matching.py
+    >  JSON to React renders results
+    >  Confirmed batches persisted to Supabase via Prisma
+```
 
-## Scope
+The algorithm runs in a per-request temp directory and is cleaned up after the response is sent. Confirmed batches are persisted to Supabase and can be reloaded by any authenticated user.
 
-- **Algorithm Refinement**: Evaluate current matching logic, identify inefficiencies, and implement optimized assignment strategies using operations research techniques
-- **Frontend Development**: Build interactive UI components for preference input, match visualization, and administrative controls
-- **Stakeholder Collaboration**: Work directly with PWCC leadership to align technical solutions with program needs
+## Algorithm: Four-Stage Pipeline
+
+### Stage 1. Cleaning
+
+Parses the raw Google Form CSV, normalizes fields against controlled vocabularies (organizations, locations, colleges, career interests, field-of-interest ranks), deduplicates names, and splits into clean mentor and mentee files.
+
+### Stage 2. Field similarity
+
+Builds a static 30 by 30 symmetric field-similarity matrix. The matrix is hand-curated and only needs updating if the field taxonomy changes.
+
+### Stage 3. Compatibility scores
+
+Computes an N_mentees by N_mentors compatibility matrix weighted as follows.
+
+- Field of interest: **93%**
+- Career interests: **3%**
+- Location: **3%**
+- Organization: **2%**
+- College: **1%**
+
+### Stage 4. Modified greedy matching
+
+Two solutions run in parallel and the committee picks per cycle.
+
+**Popular Mentor Reservation.** The top 20% most-requested mentors hold back 50% of their capacity per round, so high-demand mentors stay available longer for less-popular mentees who would otherwise lose out.
+
+**Constrained Mentee Priority.** Mentees with the fewest compatible options are matched first. The hardest-to-place go first.
+
+Three key parameters are exposed in the UI for the committee to tune per cycle: `TAU` (minimum compatibility score for a valid match), `USE_RESERVE` (enable or disable popularity reservation), and `RESERVE_FRAC` (fraction of popular mentor capacity held back).
+
+## Roles and Permissions
+
+Two roles control what each user can do.
+
+**MASTER** (committee chair). Upload CSVs, run the algorithm, tune parameters, confirm or delete batches, override matches, assign unmatched mentees, manage user roles, apply or dismiss reviewer suggestions.
+
+**REVIEWER** (committee members). Load saved batches, view results, suggest reassignments from the top three alternatives, export CSVs.
+
+Role is assigned on first sign-in based on an environment variable. All routes require authentication, and destructive operations require MASTER. A MASTER cannot demote themselves.
+
+## Testing
+
+`python3 algorithm/run_tests.py` covers **153 checks across 5 suites with 0 failures**. The suite covers invariants across batches: every mentor under capacity, no unmatched mentee whose top alternative is available, score monotonicity, and per-stage data shape.
+
+## Outcome
+
+Delivered and in active use at PWCC. Stakeholder feedback validated improved match quality. Administrators now have direct override and visualization tools for the first time, collapsing a previously manual review cycle into one interface.
 
 ## Tech Stack
 
-- Python for algorithm development and optimization
-- React / Next.js for frontend UI
-- Data analysis and validation tooling
+Next.js 14 App Router, TypeScript, Tailwind CSS, Python 3, Supabase (PostgreSQL), Prisma ORM, NextAuth.js v4, Google OAuth (Cornell-only), deployed on Render.
