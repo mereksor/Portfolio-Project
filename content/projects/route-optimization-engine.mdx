@@ -10,13 +10,13 @@ status: "in-progress"
 
 ## Overview
 
-Builds optimal daily schedules and driving routes for a field services company. The system takes jobs, technician availability, and material orders, then outputs assignments, sequences, and time windows in under 60 seconds. It re-plans on the fly when a job runs long or a technician calls out.
+Builds daily schedules and driving routes for a field services company. The system takes jobs, technician availability, and material orders, and is designed to output assignments, sequences, and time windows in under 60 seconds, re-planning when a job runs long or a technician calls out.
 
 > *Client name withheld for confidentiality. Built solo as Project Lead and Developer.*
 
 ## Status
 
-**In Progress.** May 2026 through end of August 2026 target. Currently in discovery and data verification with the client; the first phase of the build begins as soon as the data audit closes.
+**In Progress.** The data foundation is built and merged: import of the client's real FileMaker schedule export with deduplication, address geocoding with a map-based review queue, a 12-table Postgres data model, per-job duration estimates, and job start and completion tracking. A Next.js dispatcher UI covers upload, review, and daily job tracking, and Microsoft 365 single sign-on is built and ready to activate. Next up is the routing solver itself.
 
 ## The Problem
 
@@ -83,4 +83,4 @@ Each phase ships a working product. The company doesn't wait until phase 5 to se
 
 ## Tech Stack
 
-Python, Google OR-Tools, Google Maps API, Pandas, Streamlit, PostgreSQL, AWS / GCP.
+Python, FastAPI, PostgreSQL, Redis and RQ workers, Next.js, Leaflet, Google Geocoding API, Microsoft Entra ID, Google OR-Tools (solver, next phase).
