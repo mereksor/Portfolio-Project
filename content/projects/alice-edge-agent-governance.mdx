@@ -1,0 +1,41 @@
+---
+title: "ALICE: Authenticated Local Identity and Cyber Enforcement"
+slug: "alice-edge-agent-governance"
+description: "Best Design winner at DN Hacks (Energy and Infrastructure track, Washington, DC). An edge system that governs autonomous AI agent actions when enterprise connectivity is lost, routing risky actions to a biometrically verified technician."
+date: "2026-09-06"
+tags: ["AI/ML", "Security", "Edge Computing", "Python"]
+featured: true
+status: "completed"
+---
+
+## Overview
+
+When an enterprise network goes down, autonomous AI agents at the edge keep acting, but the systems that normally authorize and log those actions are gone. ALICE fills that gap. It classifies each agent request on-device, holds risky actions for a biometrically verified technician, and records every request, decision, and execution in a tamper-evident ledger that syncs upstream once connectivity returns.
+
+Built overnight at DN Hacks in Washington, DC with a five-person team. **Won Best Design** in the Energy and Infrastructure track.
+
+## Status
+
+**Completed (hackathon prototype).** The demo path runs end to end on real hardware: a signed request travels through the Raspberry Pi runtime to a physical ESP32 light, with verified audit delivery to the enterprise log and a read-only technician web view. The full held-action loop is still being integrated.
+
+## How It Works
+
+- **Online.** Enterprise systems own execution. ALICE syncs trusted permissions, observes authenticated activity, and uploads its audit trail.
+- **Offline.** After a controlled handoff of authority, ALICE assesses supported requests against cached permissions and behavioral baselines. Unusual actions are held for a human.
+- **Reconnection** is a workflow, not a mode. Losing the network, matching a face, or an LLM explanation never grants execution authority on its own.
+
+## Components
+
+- **On-device ML classification.** Scores each request against contextual behavioral features on the Pi and flags anomalies for review.
+- **Technician console.** React and Tauri desktop app where the technician reviews held actions, backed by ArcFace facial verification before any approval.
+- **Decision Evidence Ledger.** SQLite recorder with hash-chained events and Ed25519-signed checkpoints, so any tampering with the record is detectable.
+- **Enterprise audit delivery.** Uploads the ledger to Wazuh over verified TLS with read-back confirmation, persistent receipts, and retry on failure.
+- **Physical demo.** Raspberry Pi 4 edge device driving ESP32-controlled lights as the protected system.
+
+## My Role
+
+Owned backend integration: offline action logging into the evidence ledger, caching permission policy to the edge device, and connecting the runtime and ledger boundaries to the technician-facing data flow.
+
+## Tech Stack
+
+Python, FastAPI, SQLite, Raspberry Pi 4, ESP32, React, Tauri (Rust), ArcFace, Wazuh, Ed25519 signing.
