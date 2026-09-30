@@ -129,7 +129,7 @@ export default function ResumePage() {
           <div>
             <div className="flex flex-wrap items-baseline justify-between gap-2">
               <h3 className="font-display font-semibold text-ink">
-                Logistics &amp; Operations Manager
+                Operations Manager
               </h3>
               <span className="font-mono text-xs text-ink-faint">Feb 2024 &ndash; Aug 2024</span>
             </div>
@@ -166,11 +166,11 @@ export default function ResumePage() {
             <ul className="mt-2 space-y-1.5 text-sm text-ink-muted">
               <li className="flex gap-2">
                 <span className="mt-1.5 text-crimson">&bull;</span>
-                <span>Built and operated a residential services business serving 30+ properties</span>
+                <span>Co-founded and scaled a power washing venture, managing pricing, forecasting, and customer acquisition</span>
               </li>
               <li className="flex gap-2">
                 <span className="mt-1.5 text-crimson">&bull;</span>
-                <span>Developed pricing strategy that generated $8K+ in profit and improved service consistency</span>
+                <span>Grew the business to 32 clients and $6K+ revenue within 3 months</span>
               </li>
             </ul>
           </div>
@@ -184,7 +184,7 @@ export default function ResumePage() {
           <div>
             <div className="flex flex-wrap items-baseline justify-between gap-2">
               <h3 className="font-display font-semibold text-ink">
-                Founding Member &amp; Head of Corporate Outreach
+                Founding Head of Corporate Partnerships
               </h3>
               <span className="font-mono text-xs text-ink-faint">Feb 2025 &ndash; Present</span>
             </div>
