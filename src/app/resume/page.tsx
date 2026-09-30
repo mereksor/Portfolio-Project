@@ -54,14 +54,14 @@ export default function ResumePage() {
             <h3 className="font-display font-semibold text-ink">
               Cornell University, College of Engineering
               <span className="ml-2 inline-block rounded bg-crimson/10 px-2 py-0.5 text-xs font-medium text-crimson">
-                Intended
+                Pursuing
               </span>
             </h3>
             <p className="font-mono text-sm text-ink-muted">
-              Ithaca, NY &middot; Expected Dec 2027 (if accepted)
+              Ithaca, NY &middot; Anticipated December 2027
             </p>
             <p className="mt-1 text-sm text-ink-secondary">
-              M.Eng. Operations Research &amp; Information Engineering, Strategic Operations
+              M.Eng. Applied Information and Technology
             </p>
           </div>
         </div>
@@ -71,20 +71,31 @@ export default function ResumePage() {
       <section className="animate-fade-up stagger-2 mt-14">
         <p className="section-label">Work Experience</p>
         <div className="mt-4 space-y-8 border-l-2 border-crimson pl-6">
-          {/* AEP: Upcoming */}
+          {/* AEP */}
           <div>
             <div className="flex flex-wrap items-baseline justify-between gap-2">
               <h3 className="font-display font-semibold text-ink">
-                Business Process Improvement Intern
-                <span className="ml-2 inline-block rounded bg-crimson/10 px-2 py-0.5 text-xs font-medium text-crimson">
-                  Upcoming
-                </span>
+                Business Process Improvement and AI Intern
               </h3>
-              <span className="font-mono text-xs text-ink-faint">Summer 2026</span>
+              <span className="font-mono text-xs text-ink-faint">Jun 2026 &ndash; Aug 2026</span>
             </div>
             <p className="font-mono text-sm text-ink-muted">
               American Electric Power (AEP) &middot; Columbus, OH
             </p>
+            <ul className="mt-2 space-y-1.5 text-sm text-ink-muted">
+              <li className="flex gap-2">
+                <span className="mt-1.5 text-crimson">&bull;</span>
+                <span>Architected AI and document intelligence products, including a RAG system to parse enterprise documents and surface process improvement opportunities across AEP operating companies</span>
+              </li>
+              <li className="flex gap-2">
+                <span className="mt-1.5 text-crimson">&bull;</span>
+                <span>Directed a robotics-initiative feasibility study for a Vice President-level executive driving enterprise-wide robotics strategy, integrating industry research and subject matter expert input; defined and tracked viability metrics</span>
+              </li>
+              <li className="flex gap-2">
+                <span className="mt-1.5 text-crimson">&bull;</span>
+                <span>Engineered a Python library and repeatable scripts for in-house AI automations as one of a limited group granted early API access; now used in other projects and projected to save multiple full-time employees of labor</span>
+              </li>
+            </ul>
           </div>
 
           {/* Secretariat */}
@@ -210,32 +221,6 @@ export default function ResumePage() {
               <li className="flex gap-2">
                 <span className="mt-1.5 text-crimson">&bull;</span>
                 <span>Lead campus marketing initiatives and sampling campaigns to drive engagement and brand presence</span>
-              </li>
-            </ul>
-          </div>
-
-          <div>
-            <div className="flex flex-wrap items-baseline justify-between gap-2">
-              <h3 className="font-display font-semibold text-ink">
-                Lodge Manager &amp; Vice President
-              </h3>
-              <span className="font-mono text-xs text-ink-faint">Aug 2024 &ndash; May 2026</span>
-            </div>
-            <p className="font-mono text-sm text-ink-muted">
-              Chi Psi Fraternity &middot; Ithaca, NY
-            </p>
-            <ul className="mt-2 space-y-1.5 text-sm text-ink-muted">
-              <li className="flex gap-2">
-                <span className="mt-1.5 text-crimson">&bull;</span>
-                <span>Managed operations for a 13,000 sq ft residential lodge on 3.5 acres, overseeing facility maintenance, vendor contracts, and budgeting for 30 residents and 60+ members</span>
-              </li>
-              <li className="flex gap-2">
-                <span className="mt-1.5 text-crimson">&bull;</span>
-                <span>Planned and executed 4 large-scale formal events, managing logistics, vendor coordination, and budgets from concept through delivery</span>
-              </li>
-              <li className="flex gap-2">
-                <span className="mt-1.5 text-crimson">&bull;</span>
-                <span>Led chapter leadership as Vice President, overseeing organizational planning, member accountability, and cross-functional operations</span>
               </li>
             </ul>
           </div>

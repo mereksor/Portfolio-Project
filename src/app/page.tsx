@@ -25,11 +25,14 @@ export default function HomePage() {
         <div className="animate-fade-up stagger-2 mt-6 max-w-2xl">
           <p className="text-xl leading-relaxed text-ink-muted">
             Operations Research &amp; Information Engineering student at{" "}
-            <span className="font-medium text-ink">Cornell University</span>.
-            Building data-driven solutions at the intersection of{" "}
+            <span className="font-medium text-ink">Cornell University</span>,
+            pursuing an{" "}
+            <span className="font-medium text-ink">M.Eng. in Applied Information and Technology</span>{" "}
+            (anticipated December 2027). Building data-driven solutions at the
+            intersection of{" "}
             <span className="font-medium text-ink">optimization</span>,{" "}
             <span className="font-medium text-ink">analytics</span>, and{" "}
-            <span className="font-medium text-ink">AI</span> &mdash; from
+            <span className="font-medium text-ink">AI</span>, from
             construction delay consulting to warehouse logistics to generative
             AI partnerships.
           </p>
