@@ -54,11 +54,11 @@ export default function ResumePage() {
             <h3 className="font-display font-semibold text-ink">
               Cornell University, College of Engineering
               <span className="ml-2 inline-block rounded bg-crimson/10 px-2 py-0.5 text-xs font-medium text-crimson">
-                Pursuing
+                Admitted
               </span>
             </h3>
             <p className="font-mono text-sm text-ink-muted">
-              Ithaca, NY &middot; Anticipated December 2027
+              Ithaca, NY &middot; Spring 2027 &ndash; December 2027
             </p>
             <p className="mt-1 text-sm text-ink-secondary">
               M.Eng. Applied Information and Technology
