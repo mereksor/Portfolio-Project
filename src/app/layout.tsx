@@ -1,15 +1,18 @@
 import type { Metadata } from "next";
-import { Libre_Baskerville, DM_Sans, DM_Mono } from "next/font/google";
+import { Newsreader, DM_Sans, DM_Mono } from "next/font/google";
 import { Analytics } from "@vercel/analytics/next";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
+import { siteUrl } from "@/lib/site";
 import "./globals.css";
 
-const libreBaskerville = Libre_Baskerville({
-  variable: "--font-libre-baskerville",
+// Newsreader is a variable serif with optical sizing, so large hero type stays crisp
+// at light weights while small headings can still go semibold.
+const newsreader = Newsreader({
+  variable: "--font-newsreader",
   subsets: ["latin"],
-  weight: ["400", "700"],
   display: "swap",
+  style: ["normal", "italic"],
 });
 
 const dmSans = DM_Sans({
@@ -26,8 +29,6 @@ const dmMono = DM_Mono({
   display: "swap",
 });
 
-const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? "https://mereksoriano.vercel.app";
-
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
   title: {
@@ -35,7 +36,7 @@ export const metadata: Metadata = {
     template: "%s | Merek Soriano",
   },
   description:
-    "Merek Soriano. Cornell ORIE student building at the intersection of optimization, analytics, and AI. Resume, projects, and blog.",
+    "Merek Soriano. Cornell ORIE student building at the intersection of optimization, analytics, and AI. Projects, current work, and resume.",
   openGraph: {
     title: "Merek Soriano | ORIE & AI",
     description:
@@ -65,7 +66,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${libreBaskerville.variable} ${dmSans.variable} ${dmMono.variable} flex min-h-screen flex-col antialiased`}
+        className={`${newsreader.variable} ${dmSans.variable} ${dmMono.variable} flex min-h-screen flex-col antialiased`}
       >
         <Header />
         <main className="flex-1">{children}</main>
