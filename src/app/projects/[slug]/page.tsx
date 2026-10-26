@@ -94,7 +94,7 @@ export default async function ProjectPage({
         </div>
       </div>
 
-      {(project.githubUrl || project.liveUrl) && (
+      {(project.githubUrl || project.liveUrl || project.externalUrl) && (
         <div className="animate-fade-up stagger-2 mt-5 flex gap-4">
           {project.githubUrl && (
             <a
@@ -114,6 +114,16 @@ export default async function ProjectPage({
               className="link-underline text-sm font-medium text-crimson"
             >
               Live Demo &rarr;
+            </a>
+          )}
+          {project.externalUrl && (
+            <a
+              href={project.externalUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="link-underline text-sm font-medium text-crimson"
+            >
+              {project.externalLabel ?? "Learn More"} &rarr;
             </a>
           )}
         </div>
