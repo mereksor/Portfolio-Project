@@ -34,8 +34,8 @@ const nowItems: NowItem[] = [
     title: "M.Eng. Project",
     org: "Cornell University",
     dates: "Spring 2027 - December 2027",
-    body: "Master of Engineering in Applied Information and Technology, starting Spring 2027 alongside the final B.S. semester. The M.Eng. project is anticipated for 2027, topic to be announced.",
-    points: ["Applied Information and Technology", "Admitted", "Topic TBD"],
+    body: "Master of Engineering in Data Analytics, starting Spring 2027 alongside the final B.S. semester. The M.Eng. project is anticipated for 2027, topic to be announced.",
+    points: ["Data Analytics", "Admitted", "Topic TBD"],
   },
 ];
 
@@ -45,7 +45,7 @@ interface LogEntry {
 }
 
 const log: LogEntry[] = [
-  { when: "Spring 2027", what: "M.Eng. in Applied Information and Technology begins (anticipated)" },
+  { when: "Spring 2027", what: "M.Eng. in Data Analytics begins (anticipated)" },
   { when: "2026", what: "AI automation contract work at CCR" },
   { when: "Sep 2026", what: "ALICE wins Best Design at DN Hacks, Washington, DC" },
   { when: "Jun - Aug 2026", what: "Business Process Improvement and AI Intern, American Electric Power" },
@@ -87,7 +87,7 @@ export default function HomePage() {
 
           <p className="animate-fade-up stagger-4 mt-8 max-w-2xl text-lg leading-relaxed text-ink-secondary sm:text-xl">
             Cornell Operations Research and Information Engineering, starting an M.Eng. in
-            Applied Information and Technology in Spring 2027. Building real systems with{" "}
+            Data Analytics in Spring 2027. Building real systems with{" "}
             {/* Last in the paragraph so the word's changing width never reflows other text. */}
             <RotatingWord
               words={["optimization", "AI agents", "automation", "analytics"]}

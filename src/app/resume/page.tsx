@@ -61,7 +61,7 @@ export default function ResumePage() {
               Ithaca, NY &middot; Spring 2027 &ndash; December 2027
             </p>
             <p className="mt-1 text-sm text-ink-secondary">
-              M.Eng. Applied Information and Technology
+              M.Eng. Data Analytics
             </p>
             <p className="mt-1 text-sm text-ink-faint">
               Spring 2027 hybrid semester alongside the B.S.; M.Eng. project anticipated in 2027, topic to be announced
@@ -105,7 +105,7 @@ export default function ResumePage() {
               <span className="font-mono text-xs text-ink-faint">2027</span>
             </div>
             <p className="font-mono text-sm text-ink-muted">
-              Cornell University &middot; M.Eng. Applied Information and Technology
+              Cornell University &middot; M.Eng. Data Analytics
             </p>
             <p className="mt-2 text-sm text-ink-muted">Topic to be announced.</p>
           </div>
