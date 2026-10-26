@@ -1,43 +1,37 @@
 ---
-title: "AI-Powered Outreach Engine"
+title: "Outreach Copilot"
 slug: "ai-outreach-engine"
-description: "A personal and Cornell GenAI Club tool that automates prospect research and first-touch outreach. Combines LinkedIn sourcing, Apollo enrichment, and LLM-personalized drafts with human approval."
-date: "2026-05-01"
-tags: ["AI/ML", "Automation", "LLM"]
-featured: false
-status: "in-design"
+description: "A local-first AI outreach and job-tracking tool for personal recruiting and Cornell GenAI Club partnerships. Warmth-scored prospects, dual-mode LLM drafting, and a human approval gate before anything leaves the inbox."
+date: "2026-07-01"
+tags: ["AI/ML", "Automation", "LLM", "Next.js"]
+featured: true
+status: "in-progress"
 ---
 
 ## Overview
 
-Automates the slowest parts of corporate outreach (prospect research and first-touch drafting) for personal use and the Cornell Generative AI Club. Every send is human-approved.
+Automates the slowest parts of outreach, finding the right contact and drafting a credible first message, for my own recruiting and for the Cornell Generative AI Club's corporate partnerships. Every message is human-approved, and nothing is sent automatically.
 
 ## Status
 
-**In Design.** Concept is finalized; product and architecture brainstorm is in progress in a dedicated session. Implementation begins after spec lock.
+**In Progress.** The outreach layer (v1) is complete: campaigns, prospect import, drafting, review, and Gmail and Google Sheets integration, with an end-to-end test. A job board that tracks postings from my internship scraper is merged, and linking job postings to sourced contacts is in progress.
 
 ## Why
 
-Cornell GenAI Club's corporate outreach work has historically been bottlenecked at two steps: finding the right contact at a target firm, and drafting a credible first message. Both are time-intensive and don't scale beyond a handful of partnerships per semester. The same pattern applies to personal recruiting and partnership outreach. The bottleneck isn't intent, it's hours.
+Outreach bottlenecks at two steps: finding the right person at a target firm, and writing a first message that does not read as a template. Both take hours and do not scale past a handful of conversations a week. The bottleneck is not intent, it is time.
 
-## Goals
+## How It Works
 
-- Source LinkedIn contacts by company, role, and signal.
-- Enrich each prospect with Apollo.io firmographic and contact data.
-- Use an LLM to draft personalized first-touch messages per prospect.
-- Require human approval before every send.
-- Support two modes: personal outreach, and Cornell GenAI Club corporate partnerships.
+- **Import.** Prospects come in as CSV from free-tier sourcing tools. No scraping and no LinkedIn automation, so there is zero account risk.
+- **Warmth scoring.** Each prospect is scored on shared affiliations (school, program, clubs) so the warmest contacts surface first.
+- **Dual-mode drafting.** An LLM drafts in one of two tuned modes: personal career outreach, or GenAI Club partnership outreach with a per-campaign goal (sponsorship, speaker, partnership, recruiting).
+- **Human gate.** A keyboard-driven review queue with inline editing and approve or reject. Approved emails become Gmail drafts; LinkedIn messages are copied by hand.
+- **Tracking.** Sent messages auto-populate a Google Sheets tracker for each mode.
 
-## Open Design Questions
+## Job Board
 
-- **Sourcing compliance.** LinkedIn ToS and scraping limits. Official APIs vs. alternative data paths.
-- **Personalization signal.** Which inputs (prospect activity, company news, mutual connections) make drafts feel non-templated?
-- **Approval UX.** Bulk approve vs. per-message review. How to keep the human gate fast without becoming a rubber stamp.
-- **Memory and follow-ups.** Track replies and stage subsequent outreach automatically.
-- **Mode separation.** One tool with different system prompts and senders, or two separate apps?
+A `/jobs` board ingests postings from my internship scraper, with triage zones, table and kanban views, filters, and deadline tracking. The next step links an accepted posting directly to contacts at that company, so applying and reaching out happen in one place.
 
-## Tentative Stack
+## Tech Stack
 
-LinkedIn sourcing, Apollo.io API, LLM (Claude or OpenAI), a lightweight web UI, and a human approval workflow.
-
-*Full architecture, scraping approach, and ToS and compliance guardrails are being designed in a separate ideation session.*
+Next.js, TypeScript, Prisma, Postgres (Neon), LLM APIs, Gmail API, Google Sheets API, Vitest.
