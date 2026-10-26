@@ -9,18 +9,18 @@ export const metadata: Metadata = {
 
 export default function ResumePage() {
   return (
-    <div className="mx-auto max-w-4xl px-6 lg:px-10 py-20">
+    <div className="mx-auto max-w-4xl px-5 py-20 sm:px-6 lg:px-10">
       <div className="animate-fade-up flex items-center justify-between">
         <div>
-          <p className="section-label">Curriculum Vitae</p>
-          <h1 className="mt-2 font-display text-3xl font-bold tracking-tight text-ink sm:text-4xl">
+          <p className="section-index"><b>CV</b> / Curriculum Vitae</p>
+          <h1 className="mt-3 font-display text-5xl font-normal tracking-tight text-ink sm:text-6xl">
             Resume
           </h1>
         </div>
         <a
           href="/documents/resume.pdf"
           download
-          className="bg-ink px-5 py-2.5 text-sm font-medium text-white transition-all duration-200 hover:bg-crimson"
+          className="shrink-0 rounded-full bg-ink px-5 py-2.5 text-sm font-medium text-on-ink transition-all duration-200 hover:bg-crimson"
         >
           Download PDF
         </a>
@@ -63,6 +63,51 @@ export default function ResumePage() {
             <p className="mt-1 text-sm text-ink-secondary">
               M.Eng. Applied Information and Technology
             </p>
+            <p className="mt-1 text-sm text-ink-faint">
+              Spring 2027 hybrid semester alongside the B.S.; M.Eng. project anticipated in 2027, topic to be announced
+            </p>
+          </div>
+        </div>
+      </section>
+
+      {/* Current */}
+      <section className="animate-fade-up stagger-2 mt-14">
+        <p className="section-label">Current</p>
+        <div className="mt-4 space-y-8 border-l-2 border-crimson pl-6">
+          {/* TODO(merek): confirm CCR name, dates, client examples */}
+          <div>
+            <div className="flex flex-wrap items-baseline justify-between gap-2">
+              <h3 className="font-display font-semibold text-ink">
+                AI Automation Contractor
+              </h3>
+              <span className="font-mono text-xs text-ink-faint">2026 &ndash; Present</span>
+            </div>
+            <p className="font-mono text-sm text-ink-muted">CCR &middot; Contract</p>
+            <ul className="mt-2 space-y-1.5 text-sm text-ink-muted">
+              <li className="flex gap-2">
+                <span className="mt-1.5 text-crimson">&bull;</span>
+                <span>Build business automations for clients, connecting existing tools with Python integrations</span>
+              </li>
+              <li className="flex gap-2">
+                <span className="mt-1.5 text-crimson">&bull;</span>
+                <span>Develop custom software where off-the-shelf tools do not fit the workflow</span>
+              </li>
+            </ul>
+          </div>
+          <div>
+            <div className="flex flex-wrap items-baseline justify-between gap-2">
+              <h3 className="font-display font-semibold text-ink">
+                M.Eng. Project
+                <span className="ml-2 inline-block rounded border border-dashed border-border-strong px-2 py-0.5 font-mono text-[10px] font-medium uppercase tracking-wider text-ink-muted">
+                  Anticipated
+                </span>
+              </h3>
+              <span className="font-mono text-xs text-ink-faint">2027</span>
+            </div>
+            <p className="font-mono text-sm text-ink-muted">
+              Cornell University &middot; M.Eng. Applied Information and Technology
+            </p>
+            <p className="mt-2 text-sm text-ink-muted">Topic to be announced.</p>
           </div>
         </div>
       </section>
