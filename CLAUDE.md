@@ -3,7 +3,7 @@
 Personal portfolio site for Merek Soriano. Public-facing, consulting-recruiting focused.
 
 **Repo:** https://github.com/mereksor/Portfolio-Project
-**Live:** https://portfolio-project-kappa-ecru.vercel.app (Vercel, auto-deploys `main`)
+**Live:** https://mereksoriano.com (Vercel, auto-deploys `main`; also portfolio-project-kappa-ecru.vercel.app)
 **Local:** `/Users/mereksoriano/Downloads/Claude Code/portfolio/`
 
 ---
