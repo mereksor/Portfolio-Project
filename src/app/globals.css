@@ -210,6 +210,9 @@ hr {
    it absolutely so they can slide in and out without stacking. */
 .rotator {
   position: relative;
+  /* overflow: hidden moves an inline-block's baseline to its bottom edge, which lifts the
+     italic display word about 0.11em above the surrounding text; nudge it back down. */
+  top: 0.11em;
   display: inline-block;
   vertical-align: bottom;
   overflow: hidden;
