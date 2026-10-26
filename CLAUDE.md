@@ -16,28 +16,30 @@ Next.js 16.1.6 (App Router) · React 19 · TypeScript (strict) · Tailwind v4 ·
 
 ```
 content/
-  projects/*.mdx        # 4 project files — frontmatter + body, loaded by lib/content.ts
-  blog/                  # (empty for now)
+  projects/*.mdx        # 4 project files, frontmatter + body, loaded by lib/content.ts
 src/
   app/
     layout.tsx           # root, fonts, header/footer wrapper, analytics
-    page.tsx             # homepage (hero, featured projects, recent blog)
+    page.tsx             # homepage (signal-field hero, Now section + log, selected projects, contact)
     projects/
       page.tsx           # /projects index
       [slug]/page.tsx    # /projects/{slug} detail; renders MDX through renderMdx()
       TagFilter.tsx
     resume/page.tsx      # hand-coded resume content (not data-driven)
-    blog/                # blog index + detail
     globals.css          # design tokens, animations, prose-editorial overrides
   components/
     Header.tsx           # sticky nav with sliding indicator + hover pill
     Footer.tsx
-    ProjectCard.tsx      # card with status badge variants (4 statuses)
-    BlogPostCard.tsx
+    ProjectRow.tsx       # index-style project row (home + /projects)
+    StatusBadge.tsx      # single source for the 4 status badges
+    SignalField.tsx      # canvas hero animation (pauses off screen, static under reduced motion)
+    KineticHeading.tsx   # server-rendered word-rise headline (CSS only)
+    RotatingWord.tsx     # cycling hero word
     MagneticButton.tsx
     ScrollReveal.tsx
   lib/
-    types.ts             # Project / BlogPost interfaces
+    types.ts             # Project interface
+    site.ts              # siteUrl from NEXT_PUBLIC_SITE_URL (fallback: the vercel.app URL)
     content.ts           # filesystem MDX loader (gray-matter)
     mdx.ts               # compileMDX wrapper with rehype-pretty-code
 public/documents/resume.pdf   # downloadable resume (user updates manually)
@@ -58,12 +60,14 @@ npm run lint     # ESLint
 
 - **No em dashes anywhere.** Use periods, colons, commas, bullets, or rephrase. Em dashes have been swept from src/ and content/; keep them out going forward.
 - **No emojis anywhere.** Status badges and copy are emoji-free.
-- **Status enum on `Project.status`** is `"upcoming" | "in-progress" | "completed" | "in-design"`. ProjectCard + `app/projects/[slug]/page.tsx` both render a badge per value — when adding a new status, update BOTH places.
+- **Status enum on `Project.status`** is `"upcoming" | "in-progress" | "completed" | "in-design"`. `components/StatusBadge.tsx` maps each value to a label and style; add new statuses there.
 - **MDX content style:** tight, sharp, scannable. Short paragraphs (2–3 sentences). Lead with the strongest sentence. Recruiter-scannable.
 - **Frontmatter fields:** `title`, `slug`, `description`, `date`, `tags`, `featured`, `status`. Optional: `githubUrl`, `liveUrl`, `coverImage`. The detail page surfaces `githubUrl` as a "View Source" link.
-- **Homepage shows exactly 3 featured projects** (`getFeaturedProjects()` filters `featured: true`, sorts by date desc, slices to 3). Projects page shows all.
+- **Homepage shows up to 4 featured projects** (`getFeaturedProjects()` filters `featured: true`, sorts by date desc, slices to 4). Projects page shows all. No blog (removed 2026-10).
+- **Colors are tokens with a dark-mode override** in `globals.css`. Use `text-on-ink` (not `text-white`) on `bg-ink` surfaces so dark mode inverts correctly.
+- **Motion must respect reduced motion.** New CSS keyframe classes go in the `prefers-reduced-motion` block at the end of `globals.css`; JS motion checks `matchMedia`.
 - **Resume page is hand-coded TSX**, not data-driven. The downloadable PDF at `public/documents/resume.pdf` is maintained separately by the user.
-- **Existing animation classes** (`animate-fade-up`, `stagger-1..6`, `reveal`, `card-hover`) are defined in `src/app/globals.css`. Reuse them rather than introducing new motion.
+- **Existing animation classes** (`animate-fade-up`, `stagger-1..6`, `reveal`, `card-hover`, `kinetic-word`, `rotator`, `dot-grid`, `frame-corners`) are defined in `src/app/globals.css`. Reuse them rather than introducing new motion.
 
 ## Gotchas
 
@@ -92,7 +96,5 @@ npm run lint     # ESLint
 
 ## Future Work (post-PR-1)
 
-- AI Outreach Engine project entry is currently "In Design" — upgrade once the spun-off ideation session produces real architecture and code.
 - Consider adding `coverImage` to project frontmatter once you have images.
-- The pre-existing ESLint warning in `src/app/projects/page.tsx` (`'ProjectCard' is defined but never used`) predates the content-update branch. Worth a quick cleanup in a separate PR.
 - The downloadable resume PDF at `public/documents/resume.pdf` is from Feb 18. Update when you finish the new formatted version.
