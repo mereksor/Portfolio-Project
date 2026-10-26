@@ -235,7 +235,7 @@ export default function HomePage() {
             </p>
             <p className="mt-6 max-w-3xl font-display text-3xl font-normal leading-tight tracking-tight text-ink sm:text-5xl">
               Working on a problem that needs optimization or AI in production?{" "}
-              <span className="italic text-crimson">Let&apos;s talk.</span>
+              <span className="italic text-crimson">Let&apos;s connect.</span>
             </p>
             <div className="mt-10 flex flex-wrap items-center gap-5">
               <a
