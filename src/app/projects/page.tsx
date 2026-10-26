@@ -5,7 +5,7 @@ import type { Metadata } from "next";
 export const metadata: Metadata = {
   title: "Projects",
   description:
-    "Projects by Merek Soriano: routing optimization, AI agent governance, matching algorithms, and AI outreach tooling.",
+    "Projects by Merek Soriano: AI agent governance at the edge and an optimization-based mentor matching system.",
 };
 
 export default function ProjectsPage() {
@@ -24,8 +24,8 @@ export default function ProjectsPage() {
             Projects
           </h1>
           <p className="mt-4 max-w-xl text-ink-muted">
-            Optimization, AI systems, and tools built for real users, from a field-services
-            routing engine to an edge system that governs autonomous agents.
+            AI systems and optimization built for real users: an edge system that governs
+            autonomous agents, and a matching algorithm running a live mentorship program.
           </p>
         </div>
 

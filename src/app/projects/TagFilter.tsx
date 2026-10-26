@@ -25,7 +25,8 @@ export default function TagFilter({ tags, projects }: TagFilterProps) {
 
   return (
     <>
-      {tags.length > 0 && (
+      {/* Filtering a short list adds noise, so chips only appear once there is enough to sift. */}
+      {projects.length > 3 && tags.length > 0 && (
         <div className="mt-10 flex flex-wrap gap-2 animate-fade-up stagger-2">
           <button onClick={() => setActiveTag(null)} className={chip(activeTag === null)}>
             All
