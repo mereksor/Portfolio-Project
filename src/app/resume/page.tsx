@@ -4,7 +4,7 @@ import Link from "next/link";
 export const metadata: Metadata = {
   title: "Resume",
   description:
-    "Resume of Merek Soriano, Cornell ORIE student. Education, experience, skills, and leadership.",
+    "Resume of Merek Soriano, Cornell ORIE student focused on applied AI and forward deployed engineering. Education, experience, skills, and leadership.",
 };
 
 export default function ResumePage() {
@@ -130,15 +130,15 @@ export default function ResumePage() {
             <ul className="mt-2 space-y-1.5 text-sm text-ink-muted">
               <li className="flex gap-2">
                 <span className="mt-1.5 text-crimson">&bull;</span>
+                <span>Built internal AI automation tools, a Python library and repeatable scripts, as one of a limited group granted early API access; adopted by other projects and projected to save multiple full-time employees of labor</span>
+              </li>
+              <li className="flex gap-2">
+                <span className="mt-1.5 text-crimson">&bull;</span>
                 <span>Architected AI and document intelligence products, including a RAG system to parse enterprise documents and surface process improvement opportunities across AEP operating companies</span>
               </li>
               <li className="flex gap-2">
                 <span className="mt-1.5 text-crimson">&bull;</span>
                 <span>Directed a robotics-initiative feasibility study for a Vice President-level executive driving enterprise-wide robotics strategy, integrating industry research and subject matter expert input; defined and tracked viability metrics</span>
-              </li>
-              <li className="flex gap-2">
-                <span className="mt-1.5 text-crimson">&bull;</span>
-                <span>Engineered a Python library and repeatable scripts for in-house AI automations as one of a limited group granted early API access; now used in other projects and projected to save multiple full-time employees of labor</span>
               </li>
             </ul>
           </div>
@@ -157,15 +157,11 @@ export default function ResumePage() {
             <ul className="mt-2 space-y-1.5 text-sm text-ink-muted">
               <li className="flex gap-2">
                 <span className="mt-1.5 text-crimson">&bull;</span>
-                <span>Analyzed construction scheduling and cost data across large-scale projects to identify delays, cost drivers, and risk factors</span>
+                <span>Built data engineering workflows to extract and integrate complex project data from multiple sources, building analytical frameworks to support expert testimony and mediation proceedings</span>
               </li>
               <li className="flex gap-2">
                 <span className="mt-1.5 text-crimson">&bull;</span>
-                <span>Built forecasting models and dashboards to assess timeline risk and financial exposure</span>
-              </li>
-              <li className="flex gap-2">
-                <span className="mt-1.5 text-crimson">&bull;</span>
-                <span>Synthesized complex datasets into structured insights supporting valuation analysis and expert reporting</span>
+                <span>Conducted critical path and delay analysis across 4 multi-million-dollar construction projects using Primavera P6, quantifying timeline impacts to support data-informed settlement valuations</span>
               </li>
             </ul>
           </div>
@@ -184,38 +180,15 @@ export default function ResumePage() {
             <ul className="mt-2 space-y-1.5 text-sm text-ink-muted">
               <li className="flex gap-2">
                 <span className="mt-1.5 text-crimson">&bull;</span>
-                <span>Led operations across 10+ national relocation projects, improving execution through workflow redesign and process standardization</span>
+                <span>Designed and launched a Salesforce-based billing and logistics platform serving 1,000+ customers across two warehouses, gathering requirements and engineering automated workflows</span>
               </li>
               <li className="flex gap-2">
                 <span className="mt-1.5 text-crimson">&bull;</span>
-                <span>Managed logistics system handling 10,000+ inventory items and fulfillment for 1,000+ customers</span>
+                <span>Implemented algorithmic route optimization and scheduling, achieving 100% on-time delivery across 10+ concurrent relocation projects</span>
               </li>
               <li className="flex gap-2">
                 <span className="mt-1.5 text-crimson">&bull;</span>
-                <span>Directed an 80+ person team; implemented process improvements that contributed to a 10% increase in annual revenue</span>
-              </li>
-            </ul>
-          </div>
-
-          {/* MAC Power Washing */}
-          <div>
-            <div className="flex flex-wrap items-baseline justify-between gap-2">
-              <h3 className="font-display font-semibold text-ink">
-                Co-Founder
-              </h3>
-              <span className="font-mono text-xs text-ink-faint">May 2023 &ndash; Aug 2023</span>
-            </div>
-            <p className="font-mono text-sm text-ink-muted">
-              MAC Power Washing &middot; The Woodlands, TX
-            </p>
-            <ul className="mt-2 space-y-1.5 text-sm text-ink-muted">
-              <li className="flex gap-2">
-                <span className="mt-1.5 text-crimson">&bull;</span>
-                <span>Co-founded and scaled a power washing venture, managing pricing, forecasting, and customer acquisition</span>
-              </li>
-              <li className="flex gap-2">
-                <span className="mt-1.5 text-crimson">&bull;</span>
-                <span>Grew the business to 32 clients and $6K+ revenue within 3 months</span>
+                <span>Led cross-functional operations for 80+ staff, scaling revenue to $375K annually with 10% YoY growth</span>
               </li>
             </ul>
           </div>
@@ -239,11 +212,11 @@ export default function ResumePage() {
             <ul className="mt-2 space-y-1.5 text-sm text-ink-muted">
               <li className="flex gap-2">
                 <span className="mt-1.5 text-crimson">&bull;</span>
-                <span>Secure and manage partnerships with firms including Cisco, Investcorp, and early-stage startups</span>
+                <span>Led AI-driven product and design projects with partners including Cisco, Investcorp, and fintech startups, from client discovery to deployment</span>
               </li>
               <li className="flex gap-2">
                 <span className="mt-1.5 text-crimson">&bull;</span>
-                <span>Lead project execution and cross-functional coordination across AI initiatives</span>
+                <span>Secure and manage partnerships with 10+ firms, coordinating cross-functional teams across AI initiatives</span>
               </li>
             </ul>
           </div>
@@ -301,6 +274,12 @@ export default function ResumePage() {
         <p className="section-label">Skills &amp; Interests</p>
         <div className="mt-4 space-y-5 border-l-2 border-crimson pl-6">
           <div>
+            <h3 className="font-mono text-sm font-semibold text-ink">AI Engineering</h3>
+            <p className="mt-1 text-sm text-ink-muted">
+              LLM APIs (Claude / OpenAI) &middot; RAG &middot; LangGraph &middot; Multi-Agent Systems &middot; Agent Orchestration &middot; Workflow Automation
+            </p>
+          </div>
+          <div>
             <h3 className="font-mono text-sm font-semibold text-ink">
               Languages &amp; Data <span className="text-ink-faint font-normal">(manual proficiency)</span>
             </h3>
@@ -309,17 +288,11 @@ export default function ResumePage() {
             </p>
           </div>
           <div>
-            <h3 className="font-mono text-sm font-semibold text-ink">AI Engineering</h3>
-            <p className="mt-1 text-sm text-ink-muted">
-              LLM APIs (Claude / OpenAI) &middot; LangGraph &middot; Multi-Agent Systems &middot; Prompt Engineering &middot; Agent Orchestration
-            </p>
-          </div>
-          <div>
             <h3 className="font-mono text-sm font-semibold text-ink">
               AI-Assisted Development <span className="text-ink-faint font-normal">(via Claude Code, Cursor)</span>
             </h3>
             <p className="mt-1 text-sm text-ink-muted">
-              TypeScript &middot; React / Next.js &middot; FastAPI &middot; PostgreSQL
+              TypeScript &middot; React / Next.js &middot; FastAPI &middot; PostgreSQL &middot; Docker &middot; GitHub Actions
             </p>
           </div>
           <div>
@@ -331,7 +304,7 @@ export default function ResumePage() {
           <div>
             <h3 className="font-mono text-sm font-semibold text-ink">Interests</h3>
             <p className="mt-1 text-sm text-ink-muted">
-              AI in Finance &middot; Off-Grid Hiking &middot; Snowboarding &middot; Basketball
+              Applied AI in Operations &middot; Off-Grid Hiking &middot; Snowboarding &middot; Basketball
             </p>
           </div>
         </div>
