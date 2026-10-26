@@ -1,0 +1,45 @@
+---
+title: "ALICE: Authenticated Local Identity and Cyber Enforcement"
+slug: "alice-edge-agent-governance"
+description: "Best Design winner at DN Hacks (Energy and Infrastructure track, Washington, DC). An edge system that governs autonomous AI agent actions when enterprise connectivity is lost, routing risky actions to a biometrically verified technician."
+date: "2026-09-06"
+tags: ["AI/ML", "Security", "Edge Computing", "Python"]
+featured: true
+status: "completed"
+externalUrl: "https://portal.dnhacks.org/e/2026/showcase/alice"
+externalLabel: "DN Hacks Showcase"
+---
+
+## Overview
+
+When an enterprise network goes down, autonomous AI agents at the edge keep acting, but the systems that normally authorize and log those actions are gone. ALICE fills that gap. It scores each agent request on-device, holds anomalous actions for a biometrically verified technician, and records every request, decision, and execution in a tamper-evident ledger that syncs upstream once connectivity returns.
+
+Built overnight at DN Hacks in Washington, DC with a five-person team. **Won Best Design** in the Energy and Infrastructure track.
+
+## Status
+
+**Completed (hackathon prototype).** The final demo ran end to end on a Raspberry Pi governing a simulated server-room cooling plant, with live telemetry on physical ESP32 lights. The plant is an accelerated demonstration model, not a calibrated facility.
+
+## The Demo
+
+**Part 1: connected operation.** A Google ADK cloud agent reads plant metrics and submits a signed fan-speed request. The enterprise ingress verifies it and writes a receipt to Wazuh before forwarding it to the Pi, and the same request ID appears in the enterprise SIEM view and the technician console.
+
+**Part 2: connectivity lost.** The router is unplugged and authority transfers to the Pi. Two locally authenticated agents drive the fan: three normal step-ups are allowed and applied, then an abnormal full cooling cut scores as a high anomaly and is held. The technician reviews it, passes a fresh face check, and signs a rejection. The fan never changes.
+
+Reconnection is a workflow, not a mode. Losing the network, matching a face, or an LLM explanation never grants execution authority on its own.
+
+## Components
+
+- **Governed thermal runtime.** Pi service that verifies signed agent requests against cached permissions and a trained anomaly model, then allows, holds, or rejects each action.
+- **Technician console.** React and Tauri desktop app showing live plant telemetry and agent activity, with ArcFace facial verification before any signed approval or rejection.
+- **Decision Evidence Ledger.** SQLite on a USB drive with hash-chained events and Ed25519-signed checkpoints, so tampering with the record is detectable.
+- **Enterprise audit delivery.** Syncs the ledger to Wazuh over verified TLS with read-back confirmation, persistent receipts, and retry on failure.
+- **Telemetry display.** A XIAO ESP32-S3 drives eight lights showing power draw, fan speed, temperature, and battery. The display visualizes state only; it never grants permission.
+
+## My Role
+
+Owned backend integration: offline action logging into the evidence ledger, caching permission policy to the edge device, and connecting the runtime and ledger boundaries to the technician-facing data flow.
+
+## Tech Stack
+
+Python, FastAPI, SQLite, Raspberry Pi 4, XIAO ESP32-S3, Google ADK, MCP, React, Tauri (Rust), ArcFace, Wazuh, Ed25519 signing, Isolation Forest anomaly scoring.

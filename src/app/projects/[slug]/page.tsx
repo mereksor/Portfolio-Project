@@ -2,6 +2,8 @@ import { notFound } from "next/navigation";
 import { getAllProjects, getProjectBySlug } from "@/lib/content";
 import { renderMdx } from "@/lib/mdx";
 import Image from "next/image";
+import Link from "next/link";
+import StatusBadge from "@/components/StatusBadge";
 import type { Metadata } from "next";
 
 export async function generateStaticParams() {
@@ -40,7 +42,7 @@ export default async function ProjectPage({
   const content = await renderMdx(project.content);
 
   return (
-    <article className="mx-auto max-w-4xl px-6 lg:px-10 py-20">
+    <article className="mx-auto max-w-4xl px-5 py-20 sm:px-6 lg:px-10">
       {project.coverImage && (
         <div className="animate-scale-in relative mb-10 aspect-video overflow-hidden rounded-lg border border-border bg-bg-muted">
           <Image
@@ -53,8 +55,15 @@ export default async function ProjectPage({
         </div>
       )}
 
-      <div className="animate-fade-up">
-        <h1 className="font-display text-3xl font-bold tracking-tight text-ink sm:text-4xl">
+      <Link
+        href="/projects"
+        className="animate-fade-up link-underline inline-block font-mono text-[11px] uppercase tracking-[0.14em] text-ink-faint transition-colors hover:text-ink"
+      >
+        &larr; All projects
+      </Link>
+
+      <div className="animate-fade-up mt-8">
+        <h1 className="font-display text-4xl font-normal leading-tight tracking-tight text-ink sm:text-5xl">
           {project.title}
         </h1>
       </div>
@@ -66,36 +75,10 @@ export default async function ProjectPage({
             month: "long",
           })}
         </time>
-        {project.status === "upcoming" && (
+        {project.status && (
           <>
             <span className="text-ink-faint">·</span>
-            <span className="inline-block rounded bg-crimson/10 px-2.5 py-0.5 text-xs font-semibold uppercase tracking-wider text-crimson">
-              Upcoming
-            </span>
-          </>
-        )}
-        {project.status === "in-progress" && (
-          <>
-            <span className="text-ink-faint">·</span>
-            <span className="inline-block rounded bg-crimson/10 px-2.5 py-0.5 text-xs font-semibold uppercase tracking-wider text-crimson">
-              In Progress
-            </span>
-          </>
-        )}
-        {project.status === "completed" && (
-          <>
-            <span className="text-ink-faint">·</span>
-            <span className="inline-block rounded bg-ink px-2.5 py-0.5 text-xs font-semibold uppercase tracking-wider text-white">
-              Completed
-            </span>
-          </>
-        )}
-        {project.status === "in-design" && (
-          <>
-            <span className="text-ink-faint">·</span>
-            <span className="inline-block rounded bg-bg-muted px-2.5 py-0.5 text-xs font-semibold uppercase tracking-wider text-ink-secondary">
-              In Design
-            </span>
+            <StatusBadge status={project.status} size="md" />
           </>
         )}
         <span className="text-ink-faint">·</span>
@@ -111,7 +94,7 @@ export default async function ProjectPage({
         </div>
       </div>
 
-      {(project.githubUrl || project.liveUrl) && (
+      {(project.githubUrl || project.liveUrl || project.externalUrl) && (
         <div className="animate-fade-up stagger-2 mt-5 flex gap-4">
           {project.githubUrl && (
             <a
@@ -131,6 +114,16 @@ export default async function ProjectPage({
               className="link-underline text-sm font-medium text-crimson"
             >
               Live Demo &rarr;
+            </a>
+          )}
+          {project.externalUrl && (
+            <a
+              href={project.externalUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="link-underline text-sm font-medium text-crimson"
+            >
+              {project.externalLabel ?? "Learn More"} &rarr;
             </a>
           )}
         </div>

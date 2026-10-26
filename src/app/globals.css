@@ -1,30 +1,65 @@
 @import "tailwindcss";
 @plugin "@tailwindcss/typography";
 
+/* Lab palette: warm paper and graphite in light, near-black in dark, one signal accent.
+   The accent keeps the --crimson name so existing utility classes carry over. */
 :root {
-  /* Black & White core */
-  --bg: #FAFAFA;
-  --bg-elevated: #FFFFFF;
-  --bg-muted: #F4F4F5;
-  --ink: #09090B;
-  --ink-secondary: #3F3F46;
-  --ink-muted: #71717A;
-  --ink-faint: #A1A1AA;
-  --border: #E4E4E7;
-  --border-strong: #D4D4D8;
+  --bg: #F6F5F1;
+  --bg-elevated: #FCFBF8;
+  --bg-muted: #EEEDE7;
+  --ink: #0E0E10;
+  --ink-secondary: #393940;
+  --ink-muted: #66666D;
+  --ink-faint: #9C9CA2;
+  --on-ink: #F6F5F1;
+  --border: #E2E0D8;
+  --border-strong: #CBC8BE;
 
-  /* Crimson accent */
-  --crimson: #DC2626;
-  --crimson-dark: #B91C1C;
-  --crimson-wash: rgba(220, 38, 38, 0.06);
-  --crimson-glow: rgba(220, 38, 38, 0.12);
+  --crimson: #C8361D;
+  --crimson-dark: #A12A15;
+  --crimson-wash: rgba(200, 54, 29, 0.06);
+  --crimson-glow: rgba(200, 54, 29, 0.14);
 
-  /* Functional */
-  --code-bg: #18181B;
+  --grid-dot: rgba(14, 14, 16, 0.10);
+  --grain-opacity: 0.05;
+
+  --code-bg: #141416;
   --code-text: #E4E4E7;
-  --tag-bg: #F4F4F5;
-  --tag-border: #E4E4E7;
-  --tag-text: #3F3F46;
+  --tag-bg: #EEEDE7;
+  --tag-border: #E2E0D8;
+  --tag-text: #393940;
+
+  color-scheme: light;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg: #0B0B0D;
+    --bg-elevated: #121215;
+    --bg-muted: #18181C;
+    --ink: #EDEDE8;
+    --ink-secondary: #C6C6C0;
+    --ink-muted: #8E8E94;
+    --ink-faint: #5F5F66;
+    --on-ink: #0B0B0D;
+    --border: #222227;
+    --border-strong: #34343B;
+
+    --crimson: #FF6A4D;
+    --crimson-dark: #FF8A72;
+    --crimson-wash: rgba(255, 106, 77, 0.07);
+    --crimson-glow: rgba(255, 106, 77, 0.16);
+
+    --grid-dot: rgba(237, 237, 232, 0.09);
+    --grain-opacity: 0.07;
+
+    --code-bg: #121215;
+    --tag-bg: #18181C;
+    --tag-border: #26262C;
+    --tag-text: #C6C6C0;
+
+    color-scheme: dark;
+  }
 }
 
 @theme inline {
@@ -35,6 +70,7 @@
   --color-ink-secondary: var(--ink-secondary);
   --color-ink-muted: var(--ink-muted);
   --color-ink-faint: var(--ink-faint);
+  --color-on-ink: var(--on-ink);
   --color-border: var(--border);
   --color-border-strong: var(--border-strong);
   --color-crimson: var(--crimson);
@@ -46,29 +82,39 @@
   --color-tag-bg: var(--tag-bg);
   --color-tag-border: var(--tag-border);
   --color-tag-text: var(--tag-text);
-  --font-display: var(--font-libre-baskerville);
+  --font-display: var(--font-newsreader);
   --font-body: var(--font-dm-sans);
   --font-mono: var(--font-dm-mono);
 }
 
-/* Clean background — no grid lines */
 body {
   background-color: var(--bg);
   color: var(--ink);
   font-family: var(--font-body), system-ui, sans-serif;
+  overflow-x: hidden;
 }
 
-/* Crimson text selection */
+/* Film-grain texture over the whole page. An inline SVG turbulence filter keeps it
+   resolution independent and costs no network request. */
+body::after {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: 100;
+  pointer-events: none;
+  opacity: var(--grain-opacity);
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 0.5 0 0 0 0 0.5 0 0 0 0 0.5 0 0 0 1 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
 ::selection {
   background: var(--crimson);
-  color: white;
+  color: #FFFFFF;
 }
 
 html {
   scroll-behavior: smooth;
 }
 
-/* Minimal scrollbar */
 ::-webkit-scrollbar {
   width: 5px;
 }
@@ -89,7 +135,6 @@ hr {
   margin: 2rem 0;
 }
 
-/* Monospace section labels — now crimson */
 .section-label {
   font-family: var(--font-mono), monospace;
   font-size: 0.6875rem;
@@ -97,6 +142,102 @@ hr {
   letter-spacing: 0.12em;
   text-transform: uppercase;
   color: var(--crimson);
+}
+
+/* Section index like "01 / Now": the number in accent, the name muted. */
+.section-index {
+  font-family: var(--font-mono), monospace;
+  font-size: 0.6875rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--ink-faint);
+}
+.section-index b {
+  font-weight: 500;
+  color: var(--crimson);
+}
+
+/* Dot lattice, faded at the edges so it reads as texture rather than a pattern. */
+.dot-grid {
+  background-image: radial-gradient(var(--grid-dot) 1px, transparent 1px);
+  background-size: 22px 22px;
+  -webkit-mask-image: radial-gradient(ellipse 70% 60% at 50% 40%, #000 30%, transparent 80%);
+  mask-image: radial-gradient(ellipse 70% 60% at 50% 40%, #000 30%, transparent 80%);
+}
+
+/* Hairline frame corners, a nod to video-editor crop marks. */
+.frame-corners {
+  position: relative;
+}
+.frame-corners::before,
+.frame-corners::after {
+  content: "";
+  position: absolute;
+  width: 14px;
+  height: 14px;
+  border-color: var(--border-strong);
+  border-style: solid;
+  pointer-events: none;
+}
+.frame-corners::before {
+  top: -1px;
+  left: -1px;
+  border-width: 1px 0 0 1px;
+}
+.frame-corners::after {
+  right: -1px;
+  bottom: -1px;
+  border-width: 0 1px 1px 0;
+}
+
+/* Kinetic type: each word rises out of a clipped line, staggered with inline delays. */
+@keyframes riseIn {
+  from { transform: translateY(105%); }
+  to { transform: translateY(0); }
+}
+.kinetic-line {
+  display: inline-block;
+  overflow: hidden;
+  vertical-align: bottom;
+  padding-bottom: 0.08em;
+}
+.kinetic-word {
+  display: inline-block;
+  animation: riseIn 0.9s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+/* Rotating word: the active word sits in flow and sets the width; the others overlay
+   it absolutely so they can slide in and out without stacking. */
+.rotator {
+  position: relative;
+  display: inline-block;
+  vertical-align: bottom;
+  overflow: hidden;
+  padding-right: 0.15em;
+}
+.rotator > span {
+  position: absolute;
+  left: 0;
+  top: 0;
+  transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.6s ease;
+  transform: translateY(100%);
+  opacity: 0;
+  white-space: nowrap;
+}
+.rotator > span[data-active="true"] {
+  position: relative;
+  transform: translateY(0);
+  opacity: 1;
+}
+.rotator > span[data-leaving="true"] {
+  transform: translateY(-100%);
+  opacity: 0;
+}
+
+/* Soft accent bloom behind the hero copy. */
+.signal-glow {
+  background: radial-gradient(closest-side, var(--crimson-glow), transparent);
+  filter: blur(40px);
 }
 
 /* ===== ANIMATIONS ===== */
@@ -186,7 +327,7 @@ hr {
 .stagger-5 { animation-delay: 0.40s; }
 .stagger-6 { animation-delay: 0.48s; }
 
-/* Link underline animation — crimson */
+/* Link underline animation: crimson */
 .link-underline {
   position: relative;
   text-decoration: none;
@@ -205,7 +346,7 @@ hr {
   width: 100%;
 }
 
-/* Card hover — lift + left border */
+/* Card hover: lift + left border */
 .card-hover {
   transition: transform 0.3s cubic-bezier(0.22, 1, 0.36, 1),
               box-shadow 0.3s cubic-bezier(0.22, 1, 0.36, 1),
@@ -213,7 +354,7 @@ hr {
 }
 .card-hover:hover {
   transform: translateY(-3px);
-  box-shadow: 0 8px 30px -12px rgba(0, 0, 0, 0.12);
+  box-shadow: 0 10px 40px -18px var(--crimson-glow);
   border-color: var(--border-strong);
 }
 
@@ -259,13 +400,13 @@ hr {
 
 /* ===== INTERACTIVE HOVER EFFECTS ===== */
 
-/* Magnetic button effect — subtle pull toward cursor */
+/* Magnetic button effect: subtle pull toward cursor */
 .btn-magnetic {
   transition: transform 0.3s cubic-bezier(0.22, 1, 0.36, 1),
               background-color 0.2s ease;
 }
 
-/* Section title hover — crimson accent slides in */
+/* Section title hover: crimson accent slides in */
 .section-title-hover {
   position: relative;
   display: inline-block;
@@ -287,7 +428,7 @@ hr {
   transform: translateY(-50%) scaleY(1);
 }
 
-/* Tag hover — background fill animation */
+/* Tag hover: background fill animation */
 .tag-interactive {
   position: relative;
   overflow: hidden;
@@ -307,7 +448,7 @@ hr {
   transform: scaleX(1);
 }
 .tag-interactive:hover {
-  color: white;
+  color: var(--on-ink);
   border-color: var(--ink);
 }
 
@@ -345,6 +486,13 @@ hr {
   --tw-prose-pre-bg: var(--code-bg);
 }
 
+.prose-editorial h2,
+.prose-editorial h3 {
+  font-family: var(--font-newsreader), Georgia, serif;
+  font-weight: 500;
+  letter-spacing: -0.01em;
+}
+
 /* Inline code: readable on the light page background.
    Uses simple selectors that survive Tailwind v4 + Turbopack
    processing (the previous version with nested :where() inside
@@ -374,7 +522,7 @@ hr {
   font-size: inherit;
 }
 
-/* Per-child staggered reveal for prose blocks — gives each section its own fade-up */
+/* Per-child staggered reveal for prose blocks: gives each section its own fade-up */
 .prose-editorial > * {
   opacity: 0;
   animation: fadeUp 0.7s cubic-bezier(0.22, 1, 0.36, 1) forwards;
@@ -396,5 +544,31 @@ hr {
   .prose-editorial > * {
     opacity: 1;
     animation: none;
+  }
+}
+
+/* Reduced motion: show everything in its final state, no entrance motion or loops. */
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  .animate-fade-up,
+  .animate-fade-left,
+  .animate-scale-in,
+  .animate-blur-in,
+  .animate-width-reveal,
+  .kinetic-word,
+  .pulse-dot {
+    animation: none;
+  }
+  .reveal,
+  .reveal-left,
+  .reveal-scale {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+  .rotator > span {
+    transition: none;
   }
 }
