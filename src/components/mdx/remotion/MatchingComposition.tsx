@@ -37,13 +37,13 @@ function stage(frame: number, start: number, end: number) {
 const sortedOrder = assignments.map(([mentee]) => mentee);
 
 function menteeY(index: number, sorted: number) {
-  const unsortedY = 120 + index * 50;
-  const sortedY = 120 + sortedOrder.indexOf(index) * 50;
+  const unsortedY = 160 + index * 46;
+  const sortedY = 160 + sortedOrder.indexOf(index) * 46;
   return interpolate(sorted, [0, 1], [unsortedY, sortedY]);
 }
 
 function mentorY(index: number) {
-  return 150 + index * 100;
+  return 180 + index * 92;
 }
 
 const captions = [
@@ -70,10 +70,10 @@ export function MatchingComposition() {
       <div style={{ position: "absolute", top: 32, left: 48, fontFamily: display, fontSize: 32, color: "var(--ink)", opacity: captionOpacity }}>
         {caption.text}
       </div>
-      <div style={{ position: "absolute", top: 88, left: MENTEE_X - 60, fontSize: 13, letterSpacing: 2, color: "var(--ink-faint)" }}>
+      <div style={{ position: "absolute", top: 108, left: MENTEE_X - 120, fontSize: 13, letterSpacing: 2, color: "var(--ink-faint)" }}>
         MENTEES (OPTIONS)
       </div>
-      <div style={{ position: "absolute", top: 88, left: MENTOR_X - 10, fontSize: 13, letterSpacing: 2, color: "var(--ink-faint)" }}>
+      <div style={{ position: "absolute", top: 108, left: MENTOR_X - 14, fontSize: 13, letterSpacing: 2, color: "var(--ink-faint)" }}>
         MENTORS (2 SEATS)
       </div>
 
@@ -132,7 +132,7 @@ export function MatchingComposition() {
                 border: "2px solid var(--ink-secondary)",
               }}
             />
-            <div style={{ position: "absolute", left: MENTEE_X - 56, top: y - 10, fontSize: 16, color: "var(--ink-muted)", width: 30, textAlign: "right" }}>
+            <div style={{ position: "absolute", left: MENTEE_X - 64, top: y - 10, fontSize: 16, color: "var(--ink-muted)", width: 30, textAlign: "right" }}>
               {options}
             </div>
           </div>
