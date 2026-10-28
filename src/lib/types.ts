@@ -13,3 +13,12 @@ export interface Project {
   featured?: boolean;
   status?: "upcoming" | "in-progress" | "completed" | "in-design";
 }
+
+// Deep-dive page nested under a hub project; lives in content/projects/<parent>/ and is never listed.
+export interface SubProject {
+  title: string;
+  slug: string;
+  parent: string;
+  description: string;
+  order: number;
+}
