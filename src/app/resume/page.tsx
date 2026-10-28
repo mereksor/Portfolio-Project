@@ -297,7 +297,7 @@ export default function ResumePage() {
           <div>
             <h3 className="font-mono text-sm font-semibold text-ink">AI Engineering</h3>
             <p className="mt-1 text-sm text-ink-muted">
-              LLM APIs (Claude / OpenAI) &middot; RAG &middot; LangGraph &middot; Multi-Agent Systems &middot; Agent Orchestration &middot; Workflow Automation
+              LLM APIs (Claude / OpenAI) &middot; Embeddings &amp; Clustering &middot; LangGraph &middot; Multi-Agent Systems &middot; Agent Orchestration &middot; Workflow Automation
             </p>
           </div>
           <div>
