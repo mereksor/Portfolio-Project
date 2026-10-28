@@ -41,7 +41,7 @@ export default function ResumePage() {
               B.S. Operations Research &amp; Information Engineering, Minor in Artificial Intelligence
             </p>
             <p className="mt-1 text-sm text-ink-secondary">
-              Most Recent Semester: 22 credits of advanced ORIE coursework, including Optimization, Stochastic Models, and Machine Learning
+              Spring 2026: 22 credits of advanced ORIE coursework, including Optimization, Stochastic Models, and Machine Learning
             </p>
             <p className="mt-1 text-sm text-ink-faint">
               Relevant Coursework: Optimization Methods, Machine Learning &amp; Data Science, Stochastic Models, Engineering Applications of OR, Financial &amp; Managerial Accounting
@@ -132,7 +132,7 @@ export default function ResumePage() {
               </li>
               <li className="flex gap-2">
                 <span className="mt-1.5 text-crimson">&bull;</span>
-                <span>Built AI document intelligence pipelines, including an embedding and clustering pipeline that turned ~2,000 construction change orders into 10 actionable process improvement themes</span>
+                <span>Built AI document intelligence pipelines, including an embedding and clustering pipeline that turned ~2,500 construction change orders into 10 actionable process improvement themes</span>
               </li>
               <li className="flex gap-2">
                 <span className="mt-1.5 text-crimson">&bull;</span>
