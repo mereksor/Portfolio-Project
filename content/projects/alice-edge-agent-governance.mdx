@@ -22,6 +22,8 @@ Built overnight at DN Hacks 2026 in Washington, DC with a five-person team. **Wo
 
 ## The Demo
 
+<AlicePlayer />
+
 **Part 1: connected operation.** A Google ADK cloud agent reads plant metrics and submits a signed fan-speed request. The enterprise ingress verifies it and writes a receipt to Wazuh before forwarding it to the Pi, and the same request ID appears in the enterprise SIEM view and the technician console.
 
 **Part 2: connectivity lost.** The router is unplugged and authority transfers to the Pi. Two locally authenticated agents drive the fan: three normal step-ups are allowed and applied, then an abnormal full cooling cut scores as a high anomaly and is held. The technician reviews it, passes a fresh face check, and signs a rejection. The fan never changes.

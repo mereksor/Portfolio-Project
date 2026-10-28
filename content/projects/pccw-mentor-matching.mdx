@@ -49,13 +49,9 @@ Builds a static 30 by 30 symmetric field-similarity matrix. The matrix is hand-c
 
 ### Stage 3. Compatibility scores
 
-Computes an N_mentees by N_mentors compatibility matrix weighted as follows.
+Computes an N_mentees by N_mentors compatibility matrix. Field of interest dominates the score.
 
-- Field of interest: **93%**
-- Career interests: **3%**
-- Location: **3%**
-- Organization: **2%**
-- College: **1%**
+<CompatibilityWeights />
 
 ### Stage 4. Modified greedy matching
 
@@ -64,6 +60,8 @@ Two solutions run in parallel and the committee picks per cycle.
 **Popular Mentor Reservation.** The top 20% most-requested mentors hold back 50% of their capacity per round, so high-demand mentors stay available longer for less-popular mentees who would otherwise lose out.
 
 **Constrained Mentee Priority.** Mentees with the fewest compatible options are matched first. The hardest-to-place go first.
+
+<MatchingPlayer />
 
 Three key parameters are exposed in the UI for the committee to tune per cycle: `TAU` (minimum compatibility score for a valid match), `USE_RESERVE` (enable or disable popularity reservation), and `RESERVE_FRAC` (fraction of popular mentor capacity held back).
 

@@ -40,7 +40,7 @@ src/
     RotatingWord.tsx     # cycling hero word
     MagneticButton.tsx
     ScrollReveal.tsx
-    aep/                 # MDX components (mdxComponents.tsx registry), funnel, diagram, callouts
+    mdx/                 # embeddable MDX components (mdxComponents.tsx registry): AEP, PCCW, ALICE visuals
       remotion/          # compositions + PlayerFrame; loaded lazily via players.tsx (ssr: false)
   lib/
     types.ts             # Project interface
@@ -79,7 +79,7 @@ npm run lint     # ESLint
 
 - **Content scrub rules for internship work (AEP):** no people's names, internal system/tool names, hostnames, paths, credential details, or dollar figures; round numbers; label small validations as pilots. The AEP work is a clustering pipeline, never a "RAG system". The route optimizer project is permanently off the site. Unconfirmed client work is described generically.
 - **Remotion players need `numberOfSharedAudioTags={0}`.** Otherwise the Player preloads silent `data:` audio that the site CSP (`default-src 'self'`) blocks, logging console errors. Set in `PlayerFrame.tsx`.
-- **Custom MDX elements are registered in `components/aep/mdxComponents.tsx`** and passed to `renderMdx(source, components)`. Add new embeddable components there.
+- **Custom MDX elements are registered in `components/mdx/mdxComponents.tsx`** and passed to `renderMdx(source, components)`. Add new embeddable components there.
 
 - **Tailwind v4 + Turbopack silently strip nested `:where()` inside `:not()` selectors.** The rule may appear in the source CSS but vanish from the compiled bundle, or land with broken specificity. Use simple selectors like `.prose-editorial code` instead. See the inline-code styling in `src/app/globals.css` for the pattern.
 - **Next.js dev server returns HTTP 200 on its error overlay pages.** Don't trust curl status alone — grep the body for "Module not found" or known content markers when smoke-testing.
