@@ -49,6 +49,7 @@ const log: LogEntry[] = [
   { when: "2026", what: "AI automation contract work at CCR" },
   { when: "Sep 2026", what: "ALICE wins Best Design at DN Hacks 2026, Washington, DC" },
   { when: "Jun - Aug 2026", what: "Business Process Improvement and AI Intern, American Electric Power" },
+  { when: "Jun - Aug 2025", what: "Construction Delay Consulting Intern, Secretariat International" },
 ];
 
 const specs = [

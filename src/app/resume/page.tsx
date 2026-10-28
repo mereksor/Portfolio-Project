@@ -232,11 +232,11 @@ export default function ResumePage() {
             <ul className="mt-2 space-y-1.5 text-sm text-ink-muted">
               <li className="flex gap-2">
                 <span className="mt-1.5 text-crimson">&bull;</span>
-                <span>Led AI-driven product and design projects with partners including Cisco, Investcorp, and fintech startups, from client discovery to deployment</span>
+                <span>Secure and manage partnerships with 10+ firms, coordinating cross-functional teams across AI initiatives</span>
               </li>
               <li className="flex gap-2">
                 <span className="mt-1.5 text-crimson">&bull;</span>
-                <span>Secure and manage partnerships with 10+ firms, coordinating cross-functional teams across AI initiatives</span>
+                <span>Led AI-driven product and design projects with partners including Cisco, Investcorp, and fintech startups, from client discovery to deployment</span>
               </li>
             </ul>
           </div>
