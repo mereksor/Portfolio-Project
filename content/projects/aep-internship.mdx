@@ -1,0 +1,41 @@
+---
+title: "AEP: AI and Strategy Internship"
+slug: "aep-internship"
+description: "Summer 2026 at American Electric Power. Built LLM tooling and document pipelines for teams with no AI background, and led a robotics investment study that narrowed 48 use cases to 6 priorities for executive leadership."
+date: "2026-08-14"
+tags: ["AI/ML", "Strategy", "Python", "LLMs"]
+featured: true
+status: "completed"
+---
+
+## Overview
+
+I spent Summer 2026 as a Business Process Improvement and AI Intern at American Electric Power, one of the largest utilities in the US. The work split two ways: strategy research for an enterprise robotics initiative, and building AI tools for teams that had never used them.
+
+Everything shipped inside a real corporate environment: locked-down machines, an internal LLM gateway with early access, and users who needed results, not setup instructions. Most of the interesting decisions came from those constraints.
+
+## Deep dives
+
+<DeepDiveCards />
+
+## How the build work fit together
+
+Early in the summer I built a small Python client that made the company's internal LLM gateway usable in two lines of code with no setup. Every build project after that ran on top of it, including tools other teams adopted.
+
+<FoundationDiagram />
+
+## Constraints that shaped the work
+
+<Constraint constraint="An internship-length timeline" decision="Shipped a rerunnable pattern-mining pipeline first and left a RAG chat layer on the roadmap, instead of half-building both." />
+
+<Constraint constraint="No labeled answer key for vendor documents" decision="Ran two independent extraction passes and used their agreement as the confidence signal, so uncertain rows go to a person." />
+
+<Constraint constraint="A downstream system depended on emails staying unread" decision="Built the inbox monitor strictly read-only, with checks before and after every run that abort on any change." />
+
+<Constraint constraint="Teammates with no Python or AI background" decision="Packaged LLM access so it needed zero setup, and ran weekly office hours so people could use it on their own." />
+
+## Also shipped
+
+- **AI Office Hours.** A self-initiated 5-week program teaching teammates Python and LLM fundamentals, with a reference guide for each session.
+- **Invoice inbox monitor.** Daily collection and scheduled reports on a shared invoice inbox, giving the accounting team visibility it did not have before.
+- **Rate-sheet Excel stage.** The final stage of a multi-person pipeline that turns contractor rate proposals into standard spreadsheets. I defined the data contract with teammates, integrated end to end, and handed it off.
