@@ -71,23 +71,24 @@ export default function ResumePage() {
       <section className="animate-fade-up stagger-2 mt-14">
         <p className="section-label">Current</p>
         <div className="mt-4 space-y-8 border-l-2 border-crimson pl-6">
-          {/* TODO(merek): confirm CCR name, dates, client examples */}
           <div>
             <div className="flex flex-wrap items-baseline justify-between gap-2">
               <h3 className="font-display font-semibold text-ink">
                 AI Automation Contractor
+                <span className="ml-2 inline-block rounded border border-dashed border-border-strong px-2 py-0.5 font-mono text-[10px] font-medium uppercase tracking-wider text-ink-muted">
+                  Upcoming
+                </span>
               </h3>
-              <span className="font-mono text-xs text-ink-faint">2026 &ndash; Present</span>
             </div>
-            <p className="font-mono text-sm text-ink-muted">CCR &middot; Contract</p>
+            <p className="font-mono text-sm text-ink-muted">Independent &middot; Contract</p>
             <ul className="mt-2 space-y-1.5 text-sm text-ink-muted">
               <li className="flex gap-2">
                 <span className="mt-1.5 text-crimson">&bull;</span>
-                <span>Build business automations for clients, connecting existing tools with Python integrations</span>
+                <span>Building AI business automations for clients, connecting existing tools with Python integrations</span>
               </li>
               <li className="flex gap-2">
                 <span className="mt-1.5 text-crimson">&bull;</span>
-                <span>Develop custom software where off-the-shelf tools do not fit the workflow</span>
+                <span>Custom software where off-the-shelf tools do not fit the workflow</span>
               </li>
             </ul>
           </div>

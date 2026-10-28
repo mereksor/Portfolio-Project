@@ -18,14 +18,13 @@ interface NowItem {
 }
 
 const nowItems: NowItem[] = [
-  // TODO(merek): confirm CCR name, dates, client examples
   {
-    tag: "Now",
-    status: "Active",
+    tag: "Next",
+    status: "Upcoming",
     title: "AI Automation Contracts",
-    org: "CCR",
-    dates: "2026 - Present",
-    body: "Contract work building business automations for clients: Python integrations between the tools a team already uses, plus custom software where off-the-shelf tools fall short.",
+    org: "Independent contract work",
+    dates: "Starting soon",
+    body: "Taking on contract work building AI business automations: Python integrations between the tools a team already uses, plus custom software where off-the-shelf tools fall short.",
     points: ["Python integrations", "Custom internal tools", "Workflow automation"],
   },
   {
@@ -45,8 +44,8 @@ interface LogEntry {
 }
 
 const log: LogEntry[] = [
+  { when: "Upcoming", what: "Contract work building AI business automations" },
   { when: "Spring 2027", what: "M.Eng. in ORIE (Data Analytics) begins (anticipated)" },
-  { when: "2026", what: "AI automation contract work at CCR" },
   { when: "Sep 2026", what: "ALICE wins Best Design at DN Hacks 2026, Washington, DC" },
   { when: "Jun - Aug 2026", what: "Business Process Improvement and AI Intern, American Electric Power" },
   { when: "Jun - Aug 2025", what: "Construction Delay Consulting Intern, Secretariat International" },
