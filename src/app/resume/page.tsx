@@ -41,10 +41,7 @@ export default function ResumePage() {
               B.S. Operations Research &amp; Information Engineering, Minor in Artificial Intelligence
             </p>
             <p className="mt-1 text-sm text-ink-secondary">
-              GPA: 3.4 / 4.0
-            </p>
-            <p className="mt-1 text-sm text-ink-secondary">
-              Most Recent Semester: 3.6 GPA (22 credits; advanced ORIE coursework including Optimization, Stochastic Models, and Machine Learning)
+              Most Recent Semester: 22 credits of advanced ORIE coursework, including Optimization, Stochastic Models, and Machine Learning
             </p>
             <p className="mt-1 text-sm text-ink-faint">
               Relevant Coursework: Optimization Methods, Machine Learning &amp; Data Science, Stochastic Models, Engineering Applications of OR, Financial &amp; Managerial Accounting
@@ -134,7 +131,7 @@ export default function ResumePage() {
               </li>
               <li className="flex gap-2">
                 <span className="mt-1.5 text-crimson">&bull;</span>
-                <span>Architected AI and document intelligence products, including a RAG system to parse enterprise documents and surface process improvement opportunities across AEP operating companies</span>
+                <span>Built AI document intelligence pipelines, including an embedding and clustering pipeline that turned ~2,000 construction change orders into 10 actionable process improvement themes</span>
               </li>
               <li className="flex gap-2">
                 <span className="mt-1.5 text-crimson">&bull;</span>
@@ -157,7 +154,7 @@ export default function ResumePage() {
             <ul className="mt-2 space-y-1.5 text-sm text-ink-muted">
               <li className="flex gap-2">
                 <span className="mt-1.5 text-crimson">&bull;</span>
-                <span>Built data engineering workflows to extract and integrate complex project data from multiple sources, building analytical frameworks to support expert testimony and mediation proceedings</span>
+                <span>Built data engineering workflows to extract and integrate project data from multiple sources, building analytical frameworks to support expert testimony and mediation proceedings</span>
               </li>
               <li className="flex gap-2">
                 <span className="mt-1.5 text-crimson">&bull;</span>

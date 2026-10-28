@@ -76,7 +76,7 @@ export default function HomePage() {
           <div className="animate-fade-up inline-flex items-center gap-3 rounded-full border border-border bg-bg/70 px-3.5 py-1.5 backdrop-blur">
             <span className="pulse-dot" aria-hidden="true" />
             <span className="font-mono text-[10px] uppercase tracking-[0.16em] text-ink-muted">
-              Seeking Summer 2027 internships
+              Seeking Summer 2027 Forward Deployed and Applied AI Engineer internships
             </span>
           </div>
 
