@@ -27,6 +27,16 @@ const securityHeaders = [
 ];
 
 const nextConfig: NextConfig = {
+  // Old slug had a typo (the program is PCCW); keep shared links working.
+  async redirects() {
+    return [
+      {
+        source: "/projects/pwcc-mentor-matching",
+        destination: "/projects/pccw-mentor-matching",
+        permanent: true,
+      },
+    ];
+  },
   async headers() {
     return [
       {
