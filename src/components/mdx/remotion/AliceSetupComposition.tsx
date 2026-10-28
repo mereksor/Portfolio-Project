@@ -16,9 +16,6 @@ function stage(frame: number, start: number, end: number) {
   });
 }
 
-// Still unconfirmed in the demo photo; kept in one place so the label is a one-line fix.
-const GRAY_BOX_LABEL = "USB hub";
-
 // Timeline in frames at 30fps.
 const CABLES = 150;
 const PART1 = 220;
@@ -34,12 +31,14 @@ const SYNC = 640;
 type Point = [number, number];
 
 // Device anchor points, left to right as they sat on the table.
-const ROUTER_TOP: Point = [296, 286];
+const ROUTER_TOP: Point = [316, 286];
 const ROUTER_MID: Point = [296, 306];
 const PI_MID: Point = [420, 306];
-const CONSOLE_PORT: Point = [230, 306];
+const CONSOLE_PORT: Point = [230, 310];
 const ENTERPRISE_TOP: Point = [832, 190];
-const UPLINK: Point[] = [ENTERPRISE_TOP, [832, 168], [296, 168], ROUTER_TOP];
+const UPLINK: Point[] = [ENTERPRISE_TOP, [832, 168], [316, 168], ROUTER_TOP];
+// The console's link to the Pi stays up through the outage, so it bypasses the router.
+const CONSOLE_LINK: Point[] = [PI_MID, [420, 346], [246, 346], [246, 310], CONSOLE_PORT];
 
 function toPath(points: Point[]) {
   return points.map(([x, y], i) => `${i === 0 ? "M" : "L"}${x} ${y}`).join(" ");
@@ -70,23 +69,23 @@ interface Packet {
 
 const packets: Packet[] = [
   { start: PART1 + 10, duration: 50, path: [...UPLINK, ROUTER_MID, PI_MID], accent: false },
-  { start: PART1 + 66, duration: 24, path: [PI_MID, ROUTER_MID, CONSOLE_PORT], accent: false },
-  { start: HOLD, duration: 22, path: [PI_MID, ROUTER_MID, CONSOLE_PORT], accent: true },
+  { start: PART1 + 66, duration: 28, path: CONSOLE_LINK, accent: false },
+  { start: HOLD, duration: 26, path: CONSOLE_LINK, accent: true },
   { start: SYNC, duration: 34, path: [PI_MID, ROUTER_MID, ...[...UPLINK].reverse()], accent: false },
 ];
 
 interface Cable {
   d: string;
   at: number;
-  uplink?: boolean;
+  // Wi-Fi links render dotted and drop when the router is unplugged.
+  wifi?: boolean;
 }
 
 const cables: Cable[] = [
-  { d: toPath([CONSOLE_PORT, [258, 306]]), at: CABLES },
-  { d: toPath([[334, 306], [368, 306]]), at: CABLES + 8 },
-  { d: toPath(UPLINK), at: CABLES + 16, uplink: true },
+  { d: toPath([[420, 336], ...CONSOLE_LINK.slice(1)]), at: CABLES },
+  { d: toPath([[334, 306], [368, 306]]), at: CABLES + 8, wifi: true },
+  { d: toPath(UPLINK), at: CABLES + 16, wifi: true },
   { d: toPath([[472, 300], [506, 300]]), at: CABLES + 24 },
-  { d: toPath([[440, 336], [440, 352], [674, 352], [674, 326]]), at: CABLES + 32 },
 ];
 
 interface AgentRequest {
@@ -115,9 +114,9 @@ const ledger: LedgerEvent[] = [
 
 const captions = [
   { at: 0, text: "The demo table, left to right" },
-  { at: CABLES, text: "One local network, the Pi in the middle" },
+  { at: CABLES, text: "The router's Wi-Fi links the cloud side to the Pi" },
   { at: PART1, text: "Part 1: a signed cloud request, verified upstream" },
-  { at: UNPLUG, text: "Part 2: router unplugged, enterprise link lost" },
+  { at: UNPLUG, text: "Part 2: router unplugged, the Wi-Fi drops" },
   { at: STEP_STARTS[0], text: "Local agents step the fan up; the Pi allows it" },
   { at: CUT_REQ, text: "A full cooling cut is held for the technician" },
   { at: SCAN, text: "Face check, signed rejection, fan unchanged" },
@@ -135,11 +134,10 @@ interface Device {
 
 const devices: Device[] = [
   { at: 10, x: 130, label: "Tech console", role: "Tauri app" },
-  { at: 30, x: 296, label: "Router", role: "local network" },
+  { at: 30, x: 296, label: "Router", role: "Wi-Fi" },
   { at: 50, x: 420, label: "Raspberry Pi 4", role: "governed runtime", local: true },
   { at: 70, x: 556, label: "ESP32-S3", role: "telemetry lights" },
-  { at: 90, x: 674, label: GRAY_BOX_LABEL, role: "" },
-  { at: 110, x: 832, label: "Enterprise", role: "ADK agent + Wazuh" },
+  { at: 90, x: 832, label: "Enterprise", role: "ADK agent + Wazuh" },
 ];
 
 // Fan level rises after each allowed step-up and is never touched by the rejected cut.
@@ -223,10 +221,14 @@ export function AliceSetupComposition() {
       <svg width={960} height={540} style={{ position: "absolute", inset: 0 }}>
         {cables.map((c) => {
           const drawn = stage(frame, c.at, c.at + 30);
-          const cut = c.uplink ? unplugged : 0;
+          const cut = c.wifi ? unplugged : 0;
           return (
             <g key={c.d}>
-              <path d={c.d} fill="none" stroke="var(--border-strong)" strokeWidth={2} pathLength={1} strokeDasharray={1} strokeDashoffset={1 - drawn} opacity={1 - cut * 0.75} />
+              {c.wifi ? (
+                <path d={c.d} fill="none" stroke="var(--border-strong)" strokeWidth={2} strokeDasharray="2 6" strokeLinecap="round" opacity={drawn * (1 - cut * 0.8)} />
+              ) : (
+                <path d={c.d} fill="none" stroke="var(--border-strong)" strokeWidth={2} pathLength={1} strokeDasharray={1} strokeDashoffset={1 - drawn} />
+              )}
               {/* A moving dash marks live links once the cables are in. */}
               <path
                 d={c.d}
@@ -240,8 +242,14 @@ export function AliceSetupComposition() {
             </g>
           );
         })}
-        {/* Unplug marker at the router end of the uplink. */}
-        <g opacity={unplugged} transform={`translate(296 ${226 - unplugged * 10})`}>
+        {/* Wi-Fi arcs over the router, gone while it is unplugged. */}
+        <g opacity={stage(frame, CABLES, CABLES + 20) * (1 - unplugged)} fill="none" stroke="var(--ink-faint)" strokeWidth={2} strokeLinecap="round">
+          {[8, 15, 22].map((r) => (
+            <path key={r} d={`M${280 - r * 0.7} ${280 - r * 0.7} A${r} ${r} 0 0 1 ${280 + r * 0.7} ${280 - r * 0.7}`} />
+          ))}
+        </g>
+        {/* Unplug marker on the router's Wi-Fi uplink. */}
+        <g opacity={unplugged} transform={`translate(316 ${226 - unplugged * 10})`}>
           <line x1={-9} y1={-9} x2={9} y2={9} stroke="var(--crimson)" strokeWidth={3} strokeLinecap="round" />
           <line x1={9} y1={-9} x2={-9} y2={9} stroke="var(--crimson)" strokeWidth={3} strokeLinecap="round" />
         </g>
@@ -286,13 +294,9 @@ export function AliceSetupComposition() {
         <div style={{ ...outline, left: 258, top: 286, width: 76, height: 40, borderRadius: 8, display: "flex", alignItems: "center", justifyContent: "center", gap: 7 }}>
           {[0, 1, 2].map((i) => {
             const blink = 0.55 + 0.45 * Math.sin(frame / 5 + i * 2);
-            // The uplink light goes dark while the router is unplugged.
-            const dark = i === 2 ? unplugged : 0;
+            // Every light goes dark while the router is unplugged.
             return (
-              <div
-                key={i}
-                style={{ width: 7, height: 7, borderRadius: 999, background: dark > 0.5 ? "var(--crimson)" : "var(--ink-secondary)", opacity: dark > 0.5 ? 1 : blink }}
-              />
+              <div key={i} style={{ width: 7, height: 7, borderRadius: 999, background: "var(--ink-secondary)", opacity: blink * (1 - unplugged * 0.85) }} />
             );
           })}
         </div>
@@ -382,13 +386,8 @@ export function AliceSetupComposition() {
         </div>
       </div>
 
-      {/* Small gray box */}
-      <div style={{ opacity: show(devices[4].at) }}>
-        <div style={{ ...outline, left: 636, top: 290, width: 76, height: 36, borderRadius: 6, background: "var(--bg-muted)" }} />
-      </div>
-
       {/* Enterprise laptop: terminal with the ADK agent and Wazuh. */}
-      <div style={{ opacity: show(devices[5].at) }}>
+      <div style={{ opacity: show(devices[4].at) }}>
         <div style={{ ...outline, left: 742, top: 190, width: 180, height: 112, borderRadius: 8, padding: "12px 12px" }}>
           <div style={{ fontSize: 11, letterSpacing: 2, color: "var(--ink-faint)" }}>TERMINAL</div>
           {terminal.map((line) => (
