@@ -41,10 +41,7 @@ export default function ResumePage() {
               B.S. Operations Research &amp; Information Engineering, Minor in Artificial Intelligence
             </p>
             <p className="mt-1 text-sm text-ink-secondary">
-              GPA: 3.4 / 4.0
-            </p>
-            <p className="mt-1 text-sm text-ink-secondary">
-              Most Recent Semester: 3.6 GPA (22 credits; advanced ORIE coursework including Optimization, Stochastic Models, and Machine Learning)
+              Most Recent Semester: 22 credits of advanced ORIE coursework, including Optimization, Stochastic Models, and Machine Learning
             </p>
             <p className="mt-1 text-sm text-ink-faint">
               Relevant Coursework: Optimization Methods, Machine Learning &amp; Data Science, Stochastic Models, Engineering Applications of OR, Financial &amp; Managerial Accounting
@@ -61,7 +58,7 @@ export default function ResumePage() {
               Ithaca, NY &middot; Spring 2027 &ndash; December 2027
             </p>
             <p className="mt-1 text-sm text-ink-secondary">
-              M.Eng. Data Analytics
+              M.Eng. Operations Research and Information Engineering, Data Analytics concentration
             </p>
             <p className="mt-1 text-sm text-ink-faint">
               Spring 2027 hybrid semester alongside the B.S.; M.Eng. project anticipated in 2027, topic to be announced
@@ -74,23 +71,24 @@ export default function ResumePage() {
       <section className="animate-fade-up stagger-2 mt-14">
         <p className="section-label">Current</p>
         <div className="mt-4 space-y-8 border-l-2 border-crimson pl-6">
-          {/* TODO(merek): confirm CCR name, dates, client examples */}
           <div>
             <div className="flex flex-wrap items-baseline justify-between gap-2">
               <h3 className="font-display font-semibold text-ink">
                 AI Automation Contractor
+                <span className="ml-2 inline-block rounded border border-dashed border-border-strong px-2 py-0.5 font-mono text-[10px] font-medium uppercase tracking-wider text-ink-muted">
+                  Upcoming
+                </span>
               </h3>
-              <span className="font-mono text-xs text-ink-faint">2026 &ndash; Present</span>
             </div>
-            <p className="font-mono text-sm text-ink-muted">CCR &middot; Contract</p>
+            <p className="font-mono text-sm text-ink-muted">Independent &middot; Contract</p>
             <ul className="mt-2 space-y-1.5 text-sm text-ink-muted">
               <li className="flex gap-2">
                 <span className="mt-1.5 text-crimson">&bull;</span>
-                <span>Build business automations for clients, connecting existing tools with Python integrations</span>
+                <span>Building AI business automations for clients, connecting existing tools with Python integrations</span>
               </li>
               <li className="flex gap-2">
                 <span className="mt-1.5 text-crimson">&bull;</span>
-                <span>Develop custom software where off-the-shelf tools do not fit the workflow</span>
+                <span>Custom software where off-the-shelf tools do not fit the workflow</span>
               </li>
             </ul>
           </div>
@@ -105,7 +103,7 @@ export default function ResumePage() {
               <span className="font-mono text-xs text-ink-faint">2027</span>
             </div>
             <p className="font-mono text-sm text-ink-muted">
-              Cornell University &middot; M.Eng. Data Analytics
+              Cornell University &middot; M.Eng. ORIE, Data Analytics
             </p>
             <p className="mt-2 text-sm text-ink-muted">Topic to be announced.</p>
           </div>
@@ -134,11 +132,11 @@ export default function ResumePage() {
               </li>
               <li className="flex gap-2">
                 <span className="mt-1.5 text-crimson">&bull;</span>
-                <span>Architected AI and document intelligence products, including a RAG system to parse enterprise documents and surface process improvement opportunities across AEP operating companies</span>
+                <span>Built AI document intelligence pipelines, including an embedding and clustering pipeline that turned ~2,000 construction change orders into 10 actionable process improvement themes</span>
               </li>
               <li className="flex gap-2">
                 <span className="mt-1.5 text-crimson">&bull;</span>
-                <span>Directed a robotics-initiative feasibility study for a Vice President-level executive driving enterprise-wide robotics strategy, integrating industry research and subject matter expert input; defined and tracked viability metrics</span>
+                <span>Led a robotics investment study for a Vice President-level executive, scoring 48 use cases on a four-part rubric to surface 6 priorities with business cases, earning leadership buy-in for a multi-year initiative</span>
               </li>
             </ul>
           </div>
@@ -157,7 +155,7 @@ export default function ResumePage() {
             <ul className="mt-2 space-y-1.5 text-sm text-ink-muted">
               <li className="flex gap-2">
                 <span className="mt-1.5 text-crimson">&bull;</span>
-                <span>Built data engineering workflows to extract and integrate complex project data from multiple sources, building analytical frameworks to support expert testimony and mediation proceedings</span>
+                <span>Built data engineering workflows to extract and integrate project data from multiple sources, building analytical frameworks to support expert testimony and mediation proceedings</span>
               </li>
               <li className="flex gap-2">
                 <span className="mt-1.5 text-crimson">&bull;</span>
@@ -192,6 +190,29 @@ export default function ResumePage() {
               </li>
             </ul>
           </div>
+
+          {/* MAC Power Washing */}
+          <div>
+            <div className="flex flex-wrap items-baseline justify-between gap-2">
+              <h3 className="font-display font-semibold text-ink">
+                Co-Founder
+              </h3>
+              <span className="font-mono text-xs text-ink-faint">May 2023 &ndash; Aug 2023</span>
+            </div>
+            <p className="font-mono text-sm text-ink-muted">
+              MAC Power Washing &middot; The Woodlands, TX
+            </p>
+            <ul className="mt-2 space-y-1.5 text-sm text-ink-muted">
+              <li className="flex gap-2">
+                <span className="mt-1.5 text-crimson">&bull;</span>
+                <span>Started a residential power washing business in high school and ran it end to end: marketing, selling jobs directly to homeowners, scheduling, and doing the work</span>
+              </li>
+              <li className="flex gap-2">
+                <span className="mt-1.5 text-crimson">&bull;</span>
+                <span>Won 30+ customers and $6K+ in revenue in one summer</span>
+              </li>
+            </ul>
+          </div>
         </div>
       </section>
 
@@ -212,11 +233,11 @@ export default function ResumePage() {
             <ul className="mt-2 space-y-1.5 text-sm text-ink-muted">
               <li className="flex gap-2">
                 <span className="mt-1.5 text-crimson">&bull;</span>
-                <span>Led AI-driven product and design projects with partners including Cisco, Investcorp, and fintech startups, from client discovery to deployment</span>
+                <span>Secure and manage partnerships with 10+ firms, coordinating cross-functional teams across AI initiatives</span>
               </li>
               <li className="flex gap-2">
                 <span className="mt-1.5 text-crimson">&bull;</span>
-                <span>Secure and manage partnerships with 10+ firms, coordinating cross-functional teams across AI initiatives</span>
+                <span>Led AI-driven product and design projects with partners including Cisco, Investcorp, and fintech startups, from client discovery to deployment</span>
               </li>
             </ul>
           </div>
@@ -327,7 +348,7 @@ export default function ResumePage() {
           <a href="mailto:mks258@cornell.edu" className="link-underline text-crimson">
             mks258@cornell.edu
           </a>
-          <a href="https://www.linkedin.com/in/merek-soriano-0ba570291" target="_blank" rel="noopener noreferrer" className="link-underline text-crimson">
+          <a href="https://www.linkedin.com/in/merek-soriano" target="_blank" rel="noopener noreferrer" className="link-underline text-crimson">
             LinkedIn
           </a>
           <a href="https://github.com/mereksor" target="_blank" rel="noopener noreferrer" className="link-underline text-crimson">

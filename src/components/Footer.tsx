@@ -9,7 +9,7 @@ export default function Footer() {
         </div>
         <div className="flex items-center gap-6">
           <a href="https://github.com/mereksor" target="_blank" rel="noopener noreferrer" className="link-underline font-mono text-[11px] font-medium uppercase tracking-[0.1em] text-ink-faint transition-colors hover:text-ink">GitHub</a>
-          <a href="https://www.linkedin.com/in/merek-soriano-0ba570291" target="_blank" rel="noopener noreferrer" className="link-underline font-mono text-[11px] font-medium uppercase tracking-[0.1em] text-ink-faint transition-colors hover:text-ink">LinkedIn</a>
+          <a href="https://www.linkedin.com/in/merek-soriano" target="_blank" rel="noopener noreferrer" className="link-underline font-mono text-[11px] font-medium uppercase tracking-[0.1em] text-ink-faint transition-colors hover:text-ink">LinkedIn</a>
           <a href="mailto:mks258@cornell.edu" className="link-underline font-mono text-[11px] font-medium uppercase tracking-[0.1em] text-ink-faint transition-colors hover:text-ink">Email</a>
         </div>
       </div>

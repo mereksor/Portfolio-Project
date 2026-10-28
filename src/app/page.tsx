@@ -18,14 +18,13 @@ interface NowItem {
 }
 
 const nowItems: NowItem[] = [
-  // TODO(merek): confirm CCR name, dates, client examples
   {
-    tag: "Now",
-    status: "Active",
+    tag: "Next",
+    status: "Upcoming",
     title: "AI Automation Contracts",
-    org: "CCR",
-    dates: "2026 - Present",
-    body: "Contract work building business automations for clients: Python integrations between the tools a team already uses, plus custom software where off-the-shelf tools fall short.",
+    org: "Independent contract work",
+    dates: "Starting soon",
+    body: "Taking on contract work building AI business automations: Python integrations between the tools a team already uses, plus custom software where off-the-shelf tools fall short.",
     points: ["Python integrations", "Custom internal tools", "Workflow automation"],
   },
   {
@@ -34,7 +33,7 @@ const nowItems: NowItem[] = [
     title: "M.Eng. Project",
     org: "Cornell University",
     dates: "Spring 2027 - December 2027",
-    body: "Master of Engineering in Data Analytics, starting Spring 2027 alongside the final B.S. semester. The M.Eng. project is anticipated for 2027, topic to be announced.",
+    body: "Master of Engineering in ORIE with a Data Analytics concentration, starting Spring 2027 alongside the final B.S. semester. The M.Eng. project is anticipated for 2027, topic to be announced.",
     points: ["Data Analytics", "Admitted", "Topic TBD"],
   },
 ];
@@ -45,10 +44,11 @@ interface LogEntry {
 }
 
 const log: LogEntry[] = [
-  { when: "Spring 2027", what: "M.Eng. in Data Analytics begins (anticipated)" },
-  { when: "2026", what: "AI automation contract work at CCR" },
-  { when: "Sep 2026", what: "ALICE wins Best Design at DN Hacks, Washington, DC" },
+  { when: "Upcoming", what: "Contract work building AI business automations" },
+  { when: "Spring 2027", what: "M.Eng. in ORIE (Data Analytics) begins (anticipated)" },
+  { when: "Sep 2026", what: "ALICE wins Best Design at DN Hacks 2026, Washington, DC" },
   { when: "Jun - Aug 2026", what: "Business Process Improvement and AI Intern, American Electric Power" },
+  { when: "Jun - Aug 2025", what: "Construction Delay Consulting Intern, Secretariat International" },
 ];
 
 const specs = [
@@ -76,7 +76,7 @@ export default function HomePage() {
           <div className="animate-fade-up inline-flex items-center gap-3 rounded-full border border-border bg-bg/70 px-3.5 py-1.5 backdrop-blur">
             <span className="pulse-dot" aria-hidden="true" />
             <span className="font-mono text-[10px] uppercase tracking-[0.16em] text-ink-muted">
-              Seeking Summer 2027 internships
+              Seeking Summer 2027 Forward Deployed and Applied AI Engineer internships
             </span>
           </div>
 
@@ -245,7 +245,7 @@ export default function HomePage() {
                 mks258@cornell.edu
               </a>
               <a
-                href="https://www.linkedin.com/in/merek-soriano-0ba570291"
+                href="https://www.linkedin.com/in/merek-soriano"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="link-underline font-mono text-xs uppercase tracking-[0.14em] text-ink-muted transition-colors hover:text-ink"
