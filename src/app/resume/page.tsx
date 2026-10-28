@@ -58,7 +58,7 @@ export default function ResumePage() {
               Ithaca, NY &middot; Spring 2027 &ndash; December 2027
             </p>
             <p className="mt-1 text-sm text-ink-secondary">
-              M.Eng. Data Analytics
+              M.Eng. Operations Research and Information Engineering, Data Analytics concentration
             </p>
             <p className="mt-1 text-sm text-ink-faint">
               Spring 2027 hybrid semester alongside the B.S.; M.Eng. project anticipated in 2027, topic to be announced
@@ -102,7 +102,7 @@ export default function ResumePage() {
               <span className="font-mono text-xs text-ink-faint">2027</span>
             </div>
             <p className="font-mono text-sm text-ink-muted">
-              Cornell University &middot; M.Eng. Data Analytics
+              Cornell University &middot; M.Eng. ORIE, Data Analytics
             </p>
             <p className="mt-2 text-sm text-ink-muted">Topic to be announced.</p>
           </div>
@@ -135,7 +135,7 @@ export default function ResumePage() {
               </li>
               <li className="flex gap-2">
                 <span className="mt-1.5 text-crimson">&bull;</span>
-                <span>Directed a robotics-initiative feasibility study for a Vice President-level executive driving enterprise-wide robotics strategy, integrating industry research and subject matter expert input; defined and tracked viability metrics</span>
+                <span>Led a robotics investment study for a Vice President-level executive, scoring 48 use cases on a four-part rubric to surface 6 priorities with business cases, earning leadership buy-in for a multi-year initiative</span>
               </li>
             </ul>
           </div>
@@ -186,6 +186,29 @@ export default function ResumePage() {
               <li className="flex gap-2">
                 <span className="mt-1.5 text-crimson">&bull;</span>
                 <span>Led cross-functional operations for 80+ staff, scaling revenue to $375K annually with 10% YoY growth</span>
+              </li>
+            </ul>
+          </div>
+
+          {/* MAC Power Washing */}
+          <div>
+            <div className="flex flex-wrap items-baseline justify-between gap-2">
+              <h3 className="font-display font-semibold text-ink">
+                Co-Founder
+              </h3>
+              <span className="font-mono text-xs text-ink-faint">May 2023 &ndash; Aug 2023</span>
+            </div>
+            <p className="font-mono text-sm text-ink-muted">
+              MAC Power Washing &middot; The Woodlands, TX
+            </p>
+            <ul className="mt-2 space-y-1.5 text-sm text-ink-muted">
+              <li className="flex gap-2">
+                <span className="mt-1.5 text-crimson">&bull;</span>
+                <span>Started a residential power washing business in high school and ran it end to end: marketing, selling jobs directly to homeowners, scheduling, and doing the work</span>
+              </li>
+              <li className="flex gap-2">
+                <span className="mt-1.5 text-crimson">&bull;</span>
+                <span>Won 30+ customers and $6K+ in revenue in one summer</span>
               </li>
             </ul>
           </div>
