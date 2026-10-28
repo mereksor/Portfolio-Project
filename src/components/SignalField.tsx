@@ -7,7 +7,6 @@ interface SignalFieldProps {
 }
 
 const SPACING = 22;
-const FPS_LABEL = 30;
 
 // Reads a CSS custom property so the canvas follows the light and dark tokens
 // instead of hardcoding colors that would drift from the stylesheet.
@@ -21,7 +20,6 @@ function cssVar(name: string, fallback: string): string {
 // "probe" that excites nearby points. Sparse accent points read as activations.
 export default function SignalField({ className = "" }: SignalFieldProps) {
   const canvasRef = useRef<HTMLCanvasElement>(null);
-  const frameRef = useRef<HTMLSpanElement>(null);
 
   useEffect(() => {
     const canvas = canvasRef.current;
@@ -37,7 +35,6 @@ export default function SignalField({ className = "" }: SignalFieldProps) {
     let raf = 0;
     let running = false;
     let visible = true;
-    let frame = 0;
     const start = performance.now();
     const pointer = { x: -9999, y: -9999, active: false };
 
@@ -110,11 +107,6 @@ export default function SignalField({ className = "" }: SignalFieldProps) {
     const tick = (now: number) => {
       const t = (now - start) / 1000;
       draw(t);
-      frame = Math.floor(t * FPS_LABEL);
-      // Written straight to the DOM so the counter never triggers a React render.
-      if (frameRef.current) {
-        frameRef.current.textContent = String(frame).padStart(6, "0");
-      }
       raf = requestAnimationFrame(tick);
     };
 
@@ -131,7 +123,6 @@ export default function SignalField({ className = "" }: SignalFieldProps) {
 
     const renderStatic = () => {
       draw(2.4);
-      if (frameRef.current) frameRef.current.textContent = "000000";
     };
 
     const onPointerMove = (e: PointerEvent) => {
@@ -194,9 +185,6 @@ export default function SignalField({ className = "" }: SignalFieldProps) {
   return (
     <div className={`pointer-events-none ${className}`} aria-hidden="true">
       <canvas ref={canvasRef} className="h-full w-full" />
-      <div className="absolute bottom-3 right-4 hidden font-mono text-[10px] uppercase tracking-[0.18em] text-ink-faint sm:block">
-        frame <span ref={frameRef}>000000</span> / {FPS_LABEL}fps
-      </div>
     </div>
   );
 }

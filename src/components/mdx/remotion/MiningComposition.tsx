@@ -33,7 +33,7 @@ function stage(frame: number, start: number, end: number) {
 }
 
 const captions = [
-  { at: 0, text: "~2,000 change orders" },
+  { at: 0, text: "~2,500 change orders" },
   { at: 70, text: "~3,900 extracted insights" },
   { at: 150, text: "Embedded and clustered (k = 10)" },
   { at: 240, text: "10 themes leadership can act on" },

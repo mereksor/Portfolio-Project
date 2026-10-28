@@ -69,7 +69,7 @@ npm run lint     # ESLint
 - **Status enum on `Project.status`** is `"upcoming" | "in-progress" | "completed" | "in-design"`. `components/StatusBadge.tsx` maps each value to a label and style; add new statuses there.
 - **MDX content style:** tight, sharp, scannable. Short paragraphs (2–3 sentences). Lead with the strongest sentence. Recruiter-scannable.
 - **Frontmatter fields:** `title`, `slug`, `description`, `date`, `tags`, `featured`, `status`. Optional: `githubUrl`, `liveUrl`, `coverImage`. The detail page surfaces `githubUrl` as a "View Source" link.
-- **Homepage shows up to 4 featured projects (currently 3)** (`getFeaturedProjects()` filters `featured: true`, sorts by date desc, slices to 4). Projects page shows all. No blog (removed 2026-10).
+- **Homepage shows up to 4 featured projects (currently 3)** (`getFeaturedProjects()` filters `featured: true`, sorts by date desc, slices to 4). Chronological on purpose: most recent work (ALICE) leads. Projects page shows all. No blog (removed 2026-10).
 - **Colors are tokens with a dark-mode override** in `globals.css`. Use `text-on-ink` (not `text-white`) on `bg-ink` surfaces so dark mode inverts correctly.
 - **Motion must respect reduced motion.** New CSS keyframe classes go in the `prefers-reduced-motion` block at the end of `globals.css`; JS motion checks `matchMedia`.
 - **Resume page is hand-coded TSX**, not data-driven. The downloadable PDF at `public/documents/resume.pdf` is regenerated from career-ops `output/_cv-base-template.html` (`generate-pdf.mjs`) and copied here.

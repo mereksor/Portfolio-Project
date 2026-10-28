@@ -15,7 +15,7 @@ export default function FoundationDiagram() {
           >
             <p className="font-mono text-[10px] uppercase tracking-[0.14em] text-ink-faint">Build</p>
             <p className="mt-1 font-display text-lg text-ink">Change order pattern mining</p>
-            <p className="mt-1 text-xs text-ink-muted">~2,000 documents to 10 themes</p>
+            <p className="mt-1 text-xs text-ink-muted">~2,500 documents to 10 themes</p>
           </Link>
           <Link
             href={`${base}/dual-pass-extraction`}

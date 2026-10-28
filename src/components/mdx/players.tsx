@@ -26,3 +26,8 @@ export const AlicePlayer = dynamic(() => import("./remotion/AlicePlayer"), {
   ssr: false,
   loading: placeholder,
 });
+
+export const AliceSetupPlayer = dynamic(() => import("./remotion/AliceSetupPlayer"), {
+  ssr: false,
+  loading: placeholder,
+});

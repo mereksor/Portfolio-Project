@@ -96,19 +96,19 @@ export default function HomePage() {
           </p>
 
           <div className="animate-fade-up stagger-5 mt-10 flex flex-wrap items-center gap-5">
-            <MagneticButton href="/projects" className="cursor-pointer">
+            <MagneticButton href="/documents/resume.pdf" className="cursor-pointer">
               <span className="inline-flex items-center gap-2.5 rounded-full bg-ink px-6 py-3 text-sm font-medium text-on-ink transition-colors duration-200 hover:bg-crimson">
-                View projects
+                Download resume
                 <svg className="h-3.5 w-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={2}>
-                  <path strokeLinecap="round" strokeLinejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" />
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M12 4.5v15m0 0l-6-6m6 6l6-6" />
                 </svg>
               </span>
             </MagneticButton>
             <Link
-              href="/resume"
+              href="/projects"
               className="link-underline font-mono text-xs uppercase tracking-[0.14em] text-ink-muted transition-colors hover:text-ink"
             >
-              Resume
+              Projects
             </Link>
             <a
               href="mailto:mks258@cornell.edu"
@@ -234,8 +234,11 @@ export default function HomePage() {
               <b>03</b> / Contact
             </p>
             <p className="mt-6 max-w-3xl font-display text-3xl font-normal leading-tight tracking-tight text-ink sm:text-5xl">
-              Working on a problem that needs optimization or AI in production?{" "}
-              <span className="italic text-crimson">Let&apos;s connect.</span>
+              Hiring for Summer 2027?{" "}
+              <Link href="/resume" className="link-underline whitespace-nowrap italic text-crimson">Here&apos;s my resume.</Link>
+              <br />
+              Need a workflow automated?{" "}
+              <a href="mailto:mks258@cornell.edu" className="link-underline whitespace-nowrap italic text-crimson">Let&apos;s talk.</a>
             </p>
             <div className="mt-10 flex flex-wrap items-center gap-5">
               <a

@@ -30,6 +30,12 @@ Built overnight at DN Hacks 2026 in Washington, DC with a five-person team. **Wo
 
 Reconnection is a workflow, not a mode. Losing the network, matching a face, or an LLM explanation never grants execution authority on its own.
 
+### The Demo Table
+
+<AliceSetupPlayer />
+
+Left to right: the technician console laptop, the router, the Raspberry Pi running the governed runtime with the ledger on a USB drive, the ESP32-S3 telemetry lights, and the enterprise laptop running the ADK agent and Wazuh. Unplugging the router killed the Wi-Fi to simulate losing enterprise connectivity, while the Pi kept governing locally.
+
 ## Components
 
 - **Governed thermal runtime.** Pi service that verifies signed agent requests against cached permissions and a trained anomaly model, then allows, holds, or rejects each action.
