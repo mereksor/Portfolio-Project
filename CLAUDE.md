@@ -1,4 +1,5 @@
 # Portfolio — Claude Context
+Last verified: 2026-07-05 (audit pass, content confirmed current)
 
 Personal portfolio site for Merek Soriano. Public-facing, consulting-recruiting focused.
 
