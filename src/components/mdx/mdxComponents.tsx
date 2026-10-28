@@ -5,7 +5,7 @@ import DeepDiveCards from "./DeepDiveCards";
 import FoundationDiagram from "./FoundationDiagram";
 import RoboticsFunnel from "./RoboticsFunnel";
 import CompatibilityWeights from "./CompatibilityWeights";
-import { AlicePlayer, DualPassPlayer, MatchingPlayer, MiningPlayer } from "./players";
+import { AlicePlayer, AliceSetupPlayer, DualPassPlayer, MatchingPlayer, MiningPlayer } from "./players";
 
 // Custom elements available to project MDX. DeepDiveCards is bound to the page's own
 // slug so hub MDX can drop it in without props.
@@ -19,6 +19,7 @@ export function projectMdxComponents(slug: string): MDXComponents {
     DualPassPlayer,
     MatchingPlayer,
     AlicePlayer,
+    AliceSetupPlayer,
     CompatibilityWeights,
     DeepDiveCards: () => <DeepDiveCards parent={slug} subs={subs} />,
   };
