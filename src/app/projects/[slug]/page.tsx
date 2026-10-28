@@ -1,7 +1,7 @@
 import { notFound } from "next/navigation";
 import { getAllProjects, getProjectBySlug } from "@/lib/content";
 import { renderMdx } from "@/lib/mdx";
-import { projectMdxComponents } from "@/components/aep/mdxComponents";
+import { projectMdxComponents } from "@/components/mdx/mdxComponents";
 import Image from "next/image";
 import Link from "next/link";
 import StatusBadge from "@/components/StatusBadge";

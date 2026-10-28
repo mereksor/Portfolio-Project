@@ -1,23 +1,24 @@
 # Portfolio — Claude Context
-Last verified: 2026-07-05 (audit pass, content confirmed current)
+Last verified: 2026-10-27
 
-Personal portfolio site for Merek Soriano. Public-facing, consulting-recruiting focused.
+Personal portfolio site for Merek Soriano. Public-facing, focused on Forward Deployed and Applied AI Engineer recruiting.
 
 **Repo:** https://github.com/mereksor/Portfolio-Project
 **Live:** https://mereksoriano.com (Vercel, auto-deploys `main`; also portfolio-project-kappa-ecru.vercel.app)
-**Local:** `/Users/mereksoriano/Downloads/Claude Code/portfolio/`
+**Local:** `/Users/mereksoriano/Downloads/Claude_Code/portfolio/`
 
 ---
 
 ## Stack
 
-Next.js 16.1.6 (App Router) · React 19 · TypeScript (strict) · Tailwind v4 · MDX (next-mdx-remote, shiki, gray-matter, rehype-pretty-code) · @vercel/analytics
+Next.js 16.1.6 (App Router) · React 19 · TypeScript (strict) · Tailwind v4 · MDX (next-mdx-remote, shiki, gray-matter, rehype-pretty-code) · Remotion 4.0.535 (pinned, `@remotion/player`) · @vercel/analytics
 
 ## Layout
 
 ```
 content/
-  projects/*.mdx        # 2 project files (ALICE, PCCW), frontmatter + body, loaded by lib/content.ts
+  projects/*.mdx        # listed projects (ALICE, AEP hub, PCCW), loaded by lib/content.ts
+  projects/<parent>/*.mdx  # deep-dive sub-pages (frontmatter: parent, order); never listed
 src/
   app/
     layout.tsx           # root, fonts, header/footer wrapper, analytics
@@ -25,6 +26,7 @@ src/
     projects/
       page.tsx           # /projects index
       [slug]/page.tsx    # /projects/{slug} detail; renders MDX through renderMdx()
+      [slug]/[sub]/page.tsx  # /projects/{slug}/{sub} deep dive, prev/next between siblings
       TagFilter.tsx
     resume/page.tsx      # hand-coded resume content (not data-driven)
     globals.css          # design tokens, animations, prose-editorial overrides
@@ -38,9 +40,12 @@ src/
     RotatingWord.tsx     # cycling hero word
     MagneticButton.tsx
     ScrollReveal.tsx
+    mdx/                 # embeddable MDX components (mdxComponents.tsx registry): AEP, PCCW, ALICE visuals
+      remotion/          # compositions + PlayerFrame; loaded lazily via players.tsx (ssr: false)
   lib/
     types.ts             # Project interface
-    site.ts              # siteUrl from NEXT_PUBLIC_SITE_URL (fallback: the vercel.app URL)
+    site.ts              # siteUrl from NEXT_PUBLIC_SITE_URL (fallback: https://mereksoriano.com)
+    useReducedMotion.ts  # matchMedia hook for JS motion
     content.ts           # filesystem MDX loader (gray-matter)
     mdx.ts               # compileMDX wrapper with rehype-pretty-code
 public/documents/resume.pdf   # downloadable resume (user updates manually)
@@ -64,13 +69,17 @@ npm run lint     # ESLint
 - **Status enum on `Project.status`** is `"upcoming" | "in-progress" | "completed" | "in-design"`. `components/StatusBadge.tsx` maps each value to a label and style; add new statuses there.
 - **MDX content style:** tight, sharp, scannable. Short paragraphs (2–3 sentences). Lead with the strongest sentence. Recruiter-scannable.
 - **Frontmatter fields:** `title`, `slug`, `description`, `date`, `tags`, `featured`, `status`. Optional: `githubUrl`, `liveUrl`, `coverImage`. The detail page surfaces `githubUrl` as a "View Source" link.
-- **Homepage shows up to 4 featured projects (currently 2)** (`getFeaturedProjects()` filters `featured: true`, sorts by date desc, slices to 4). Projects page shows all. No blog (removed 2026-10).
+- **Homepage shows up to 4 featured projects (currently 3)** (`getFeaturedProjects()` filters `featured: true`, sorts by date desc, slices to 4). Projects page shows all. No blog (removed 2026-10).
 - **Colors are tokens with a dark-mode override** in `globals.css`. Use `text-on-ink` (not `text-white`) on `bg-ink` surfaces so dark mode inverts correctly.
 - **Motion must respect reduced motion.** New CSS keyframe classes go in the `prefers-reduced-motion` block at the end of `globals.css`; JS motion checks `matchMedia`.
-- **Resume page is hand-coded TSX**, not data-driven. The downloadable PDF at `public/documents/resume.pdf` is maintained separately by the user.
+- **Resume page is hand-coded TSX**, not data-driven. The downloadable PDF at `public/documents/resume.pdf` is regenerated from career-ops `output/_cv-base-template.html` (`generate-pdf.mjs`) and copied here.
 - **Existing animation classes** (`animate-fade-up`, `stagger-1..6`, `reveal`, `card-hover`, `kinetic-word`, `rotator`, `dot-grid`, `frame-corners`) are defined in `src/app/globals.css`. Reuse them rather than introducing new motion.
 
 ## Gotchas
+
+- **Content scrub rules for internship work (AEP):** no people's names, internal system/tool names, hostnames, paths, credential details, or dollar figures; round numbers; label small validations as pilots. The AEP work is a clustering pipeline, never a "RAG system". The route optimizer project is permanently off the site. Unconfirmed client work is described generically.
+- **Remotion players need `numberOfSharedAudioTags={0}`.** Otherwise the Player preloads silent `data:` audio that the site CSP (`default-src 'self'`) blocks, logging console errors. Set in `PlayerFrame.tsx`.
+- **Custom MDX elements are registered in `components/mdx/mdxComponents.tsx`** and passed to `renderMdx(source, components)`. Add new embeddable components there.
 
 - **Tailwind v4 + Turbopack silently strip nested `:where()` inside `:not()` selectors.** The rule may appear in the source CSS but vanish from the compiled bundle, or land with broken specificity. Use simple selectors like `.prose-editorial code` instead. See the inline-code styling in `src/app/globals.css` for the pattern.
 - **Next.js dev server returns HTTP 200 on its error overlay pages.** Don't trust curl status alone — grep the body for "Module not found" or known content markers when smoke-testing.
@@ -95,7 +104,6 @@ npm run lint     # ESLint
 - **`gh` CLI** is installed at `~/.local/bin/gh` (direct binary, not via brew). PATH is wired in `~/.zshrc`. After `gh auth login -w` runs once, `gh pr create` / `gh pr view` work directly from any terminal.
 - **No brew on this machine** — install dev tooling via direct binary downloads to `~/.local/bin/`.
 
-## Future Work (post-PR-1)
+## Future Work
 
 - Consider adding `coverImage` to project frontmatter once you have images.
-- The downloadable resume PDF at `public/documents/resume.pdf` is from Feb 18. Update when you finish the new formatted version.

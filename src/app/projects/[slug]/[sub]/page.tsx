@@ -8,7 +8,7 @@ import {
   getSubProjects,
 } from "@/lib/content";
 import { renderMdx } from "@/lib/mdx";
-import { projectMdxComponents } from "@/components/aep/mdxComponents";
+import { projectMdxComponents } from "@/components/mdx/mdxComponents";
 
 interface SubPageParams {
   params: Promise<{ slug: string; sub: string }>;
