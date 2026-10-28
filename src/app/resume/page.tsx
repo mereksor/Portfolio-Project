@@ -247,7 +247,7 @@ export default function ResumePage() {
               <h3 className="font-display font-semibold text-ink">
                 Lead Student Marketing Ambassador
               </h3>
-              <span className="font-mono text-xs text-ink-faint">Jul 2025 &ndash; Present</span>
+              <span className="font-mono text-xs text-ink-faint">Aug 2025 &ndash; Present</span>
             </div>
             <p className="font-mono text-sm text-ink-muted">
               Celsius &middot; Ithaca, NY
