@@ -1,0 +1,30 @@
+---
+title: "Change Order Pattern Mining"
+slug: "pattern-mining"
+description: "A rerunnable pipeline that turned roughly 2,000 construction change orders into 10 themes leadership could act on."
+order: 2
+---
+
+## The question
+
+Change orders are the paperwork behind every scope change on a construction project. AEP had roughly 2,000 of them and wanted to know why they kept happening. Nobody could read them all, and keyword search only finds what you already know to look for.
+
+## The pipeline
+
+<MiningPlayer />
+
+1. **Extract.** An LLM reads each change order and writes one to three short insights about what went wrong and why. That produced about 3,900 insights.
+2. **Embed.** Each insight becomes a vector, so insights that mean similar things sit close together even when the wording differs.
+3. **Cluster.** K-Means groups the vectors into clusters of related insights.
+4. **Summarize.** An LLM reads each cluster and names the common pattern.
+5. **Consolidate.** The cluster summaries roll up into a final set of themes.
+
+A full run takes under about 80 minutes.
+
+## Picking the number of themes
+
+Too few clusters and distinct problems blur together. Too many and leadership gets twenty versions of the same theme. I tested between 5 and 25 clusters and scored each run on whether the themes were distinct and actionable. Ten won. The final themes broke out across planning, execution, and financial causes.
+
+## Why not a chatbot first
+
+A RAG chat interface over the documents was on the table, and it is still in the pipeline for later. For the scope of the summer, the more valuable deliverable was a repeatable set of scripts that anyone can rerun on a fresh batch of change orders to get updated themes. Retrieval answers questions you already have. Clustering surfaces the ones you did not know to ask.

@@ -1,0 +1,34 @@
+---
+title: "Dual-Pass Document Extraction"
+slug: "dual-pass-extraction"
+description: "Pulled order details out of vendor PDFs with two independent LLM passes, using their disagreement to catch errors without a labeled answer key."
+order: 3
+---
+
+## The question
+
+The procurement team copied purchase order numbers and delivery dates out of vendor PDFs by hand. Every vendor formats them differently, and some send scans. An LLM can read them, but it will sometimes invent an answer instead of admitting it is unsure.
+
+## The idea
+
+There was no labeled answer key to measure accuracy against. So instead of trusting one pass, the system runs two.
+
+<DualPassPlayer />
+
+Two independent LLM passes extract the same fields, using prompts written in deliberately different styles so they do not fail the same way. Then the system compares them field by field:
+
+- **High confidence:** every field matches
+- **Medium confidence:** minor differences, like the same date in two formats
+- **Low confidence:** real disagreement, so the row goes to a person to review
+
+## Handling scans
+
+The system first pulls the text embedded in the PDF. If a page comes back nearly empty, it is a scan, so the system switches to OCR, cleaning up the image first so the text reads accurately.
+
+## No templates
+
+Template-based parsers need a new template for every vendor. These prompts are vendor-agnostic, so a new supplier needs no code changes.
+
+## Pilot results
+
+On a small pilot of 11 vendor PDFs across more than 6 formats, including scanned documents, the system extracted 29 rows and flagged none for review. That is a promising start on a small set, not a guarantee, and the confidence tiers exist for the cases the pilot did not cover.

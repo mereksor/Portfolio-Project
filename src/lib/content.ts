@@ -1,7 +1,7 @@
 import fs from "fs";
 import path from "path";
 import matter from "gray-matter";
-import type { Project } from "./types";
+import type { Project, SubProject } from "./types";
 
 const contentDir = path.join(process.cwd(), "content");
 
@@ -39,4 +39,25 @@ export function getAllTags(): string[] {
   const tagSet = new Set<string>();
   getAllProjects().forEach((item) => item.tags?.forEach((tag) => tagSet.add(tag)));
   return Array.from(tagSet).sort();
+}
+
+export function getSubProjects(parent: string): SubProject[] {
+  return readMdxFiles<SubProject>(path.join("projects", parent))
+    .map((sub) => ({ ...sub, parent }))
+    .sort((a, b) => a.order - b.order);
+}
+
+export function getSubProject(
+  parent: string,
+  slug: string
+): (SubProject & { content: string }) | null {
+  const subs = readMdxFiles<SubProject>(path.join("projects", parent));
+  const sub = subs.find((s) => s.slug === slug);
+  return sub ? { ...sub, parent } : null;
+}
+
+export function getAllSubProjectParams(): { slug: string; sub: string }[] {
+  return getAllProjects().flatMap((p) =>
+    getSubProjects(p.slug).map((s) => ({ slug: p.slug, sub: s.slug }))
+  );
 }

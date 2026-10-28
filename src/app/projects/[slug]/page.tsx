@@ -1,6 +1,7 @@
 import { notFound } from "next/navigation";
 import { getAllProjects, getProjectBySlug } from "@/lib/content";
 import { renderMdx } from "@/lib/mdx";
+import { projectMdxComponents } from "@/components/aep/mdxComponents";
 import Image from "next/image";
 import Link from "next/link";
 import StatusBadge from "@/components/StatusBadge";
@@ -39,7 +40,7 @@ export default async function ProjectPage({
   const project = getProjectBySlug(slug);
   if (!project) notFound();
 
-  const content = await renderMdx(project.content);
+  const content = await renderMdx(project.content, projectMdxComponents(slug));
 
   return (
     <article className="mx-auto max-w-4xl px-5 py-20 sm:px-6 lg:px-10">
