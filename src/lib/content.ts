@@ -21,11 +21,7 @@ function readMdxFiles<T>(dir: string): (T & { content: string })[] {
 
 export function getAllProjects(): Project[] {
   return readMdxFiles<Project>("projects")
-    .sort(
-      (a, b) =>
-        (a.order ?? Infinity) - (b.order ?? Infinity) ||
-        new Date(b.date).getTime() - new Date(a.date).getTime()
-    );
+    .sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
 }
 
 export function getProjectBySlug(slug: string): (Project & { content: string }) | null {

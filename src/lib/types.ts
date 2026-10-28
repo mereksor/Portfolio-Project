@@ -11,8 +11,6 @@ export interface Project {
   externalUrl?: string;
   externalLabel?: string;
   featured?: boolean;
-  // Display order on home and /projects; lower first. Falls back to date when absent.
-  order?: number;
   status?: "upcoming" | "in-progress" | "completed" | "in-design";
 }
 
