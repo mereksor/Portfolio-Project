@@ -324,7 +324,7 @@ export default function ResumePage() {
           <a href="mailto:mks258@cornell.edu" className="link-underline text-crimson">
             mks258@cornell.edu
           </a>
-          <a href="https://www.linkedin.com/in/merek-soriano-0ba570291" target="_blank" rel="noopener noreferrer" className="link-underline text-crimson">
+          <a href="https://www.linkedin.com/in/merek-soriano" target="_blank" rel="noopener noreferrer" className="link-underline text-crimson">
             LinkedIn
           </a>
           <a href="https://github.com/mereksor" target="_blank" rel="noopener noreferrer" className="link-underline text-crimson">

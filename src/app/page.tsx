@@ -245,7 +245,7 @@ export default function HomePage() {
                 mks258@cornell.edu
               </a>
               <a
-                href="https://www.linkedin.com/in/merek-soriano-0ba570291"
+                href="https://www.linkedin.com/in/merek-soriano"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="link-underline font-mono text-xs uppercase tracking-[0.14em] text-ink-muted transition-colors hover:text-ink"
